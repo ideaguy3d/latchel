@@ -1,0 +1,30 @@
+{
+	"name": "latchel-app",
+	"description": "A Simple Blog",
+	"keywords": [
+		"blog",
+		"angularjs",
+		"php",
+		"web"
+	],
+	"homepage": "http://github.com/ideaguy3d/latchel",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Julius",
+			"homepage": "http://github.com/ideaguy3d"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"latchel\\": "src"
+		}
+	},
+	"config": {
+		"process-timeout": 0
+	},
+	"scripts": {
+		"start": "php -S localhost:8080 -t public",
+		"test": "phpunit"
+	}
+}
