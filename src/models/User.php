@@ -11,5 +11,9 @@ namespace Latchel;
 
 class User
 {
+    public $name;
 
+    public static function find($postId) {
+        return [];
+    }
 }

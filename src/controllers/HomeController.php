@@ -2,16 +2,19 @@
 
 namespace Latchel;
 
-use Controller;
-use Post;
-use User;
-use Comment;
+/*
+use Latchel\Controller;
+use Latchel\Post;
+use Latchel\User;
+use Latchel\Comment;
+*/
+
 
 class HomeController extends Controller
 {
     public function index() {
-        $posts = $this->getPosts('home');
-        return view('template', ['posts' => $posts]);
+        $posts = HomeController::getPosts('home');
+        return $this->view('template', ['posts' => $posts]);
     }
 
     public static function getPosts($slug) {
