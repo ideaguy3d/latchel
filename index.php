@@ -11,5 +11,5 @@ $index = $homeCtrl->index();
 $app = 'app';
 $posts = [];
 
-$render = require 'templates/template.blade.php';
+$render = require 'templates/template.php';
 $render($app, $posts);

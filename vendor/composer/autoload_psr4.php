@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'latchel\\' => array($baseDir . '/src'),
+    'Latchel\\' => array($baseDir . '/src/controllers', $baseDir . '/src/models'),
 );

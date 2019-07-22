@@ -17,7 +17,7 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"latchel\\": "src"
+			"Latchel\\": ["src/controllers", "src/models"]
 		}
 	},
 	"config": {
