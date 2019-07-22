@@ -2,50 +2,14 @@
 
 require __DIR__ . '\vendor\autoload.php';
 
+$homeCtrl = new \Latchel\HomeController();
+/**
+ * @var array
+ */
+$index = $homeCtrl->index();
+
 $app = 'app';
 $posts = [];
 
-render($app, $posts);
-
-function render($app, $posts) {
-
-    function elixir($path) {
-        return $path;
-    }
-    ?>
-
-    <!DOCTYPE html>
-    <html lang="en" data-ng-app="CodeReviewApp">
-    <head>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
-        <meta name="robots" content="noindex, nofollow">
-        <title>Latchel Code Review</title>
-
-        <link href="https://fonts.googleapis.com/css?family=News+Cycle|Open+Sans:300,400" rel="stylesheet">
-        <link rel="stylesheet" href="<?= elixir('css/'.$app.'.css') ?>">
-
-    </head>
-
-
-    <body>
-
-    <div class="header" data-ng-include="includes/header.html"></div>
-
-    <div class="content">
-        <?php foreach ($posts as $post) { ?>
-            <post post-id="<?= $post->post_id ?>" user-name="<?= $post->user->name ?>">
-                <?= $post->html ?>
-            </post>
-        <? } ?>
-    </div>
-
-    <div class="footer" data-ng-include="includes/footer.html"></div>
-
-    <script src="<?= elixir('js/' . $app . '.js') ?>"></script>
-
-    </body>
-    </html>
-
-<?php } ?>
+$render = require 'templates/template.blade.php';
+$render($app, $posts);

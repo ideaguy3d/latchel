@@ -2,13 +2,6 @@
 
 namespace Latchel;
 
-/*
-use Latchel\Controller;
-use Latchel\Post;
-use Latchel\User;
-use Latchel\Comment;
-*/
-
 
 class HomeController extends Controller
 {

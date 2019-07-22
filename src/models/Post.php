@@ -13,7 +13,7 @@ class Post
 {
     public $post_id;
     public $html;
-    private static $result = ['fields'];
+    private static $data = ['set'];
 
     // from "https://stackoverflow.com/questions/125268/chaining-static-methods-in-php"
     private static $_instance = null;
@@ -26,6 +26,6 @@ class Post
     }
 
     public static function get() {
-        return Post::$result;
+        return self::$data;
     }
 }
