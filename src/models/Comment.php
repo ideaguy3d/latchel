@@ -11,13 +11,13 @@ namespace Latchel;
 
 class Comment
 {
-    public static $data = ['set'];
+    public static $data;
 
     // solution from "https://stackoverflow.com/questions/125268/chaining-static-methods-in-php"
     private static $_instance = null;
 
     public static function where($postId, $op, $id) {
-        if(self::$_instance === null) {
+        if (self::$_instance === null) {
             self::$_instance = new self;
         }
 
@@ -25,6 +25,11 @@ class Comment
     }
 
     public static function get() {
+        // create some mock data
+        self::$data = [
+            new CommentStruct(), new CommentStruct(), new CommentStruct(), new CommentStruct(), new CommentStruct()
+        ];
+
         return self::$data;
     }
 }
