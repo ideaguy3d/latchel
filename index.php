@@ -13,3 +13,5 @@ $posts = [];
 
 $render = require 'templates/template.php';
 $render($app, $posts);
+
+$break = 'point';
