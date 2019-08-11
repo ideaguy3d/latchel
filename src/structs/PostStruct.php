@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
@@ -8,19 +9,21 @@
 
 namespace Latchel;
 
-
+/**
+ * Class PostStruct - same idea as C# structs
+ *
+ * @package Latchel
+ */
 class PostStruct
 {
     public $post_id;
     public $user_id;
     public $comments;
+    public $html;
 
     public function __construct($post_id, $user_id) {
         $this->post_id = $post_id;
         $this->user_id = $user_id;
-
-        $this->comments = [
-            ''
-        ];
+        $this->html = "<p>Ello World ^_^/</p>";
     }
 }

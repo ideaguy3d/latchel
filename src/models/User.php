@@ -24,7 +24,7 @@ class User
         $comments = Comment::get();
 
         if(!empty($comments)) {
-            return Comment::$data;
+            return new UserStruct(Comment::$data);
         }
 
         return ['error' => 'no data for comment ~User.php L28'];

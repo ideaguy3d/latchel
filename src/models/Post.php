@@ -26,22 +26,26 @@ class Post
      * @return Post|null
      */
     public static function where($type, $op, $slug) {
-        $break = 'point';
-
-        self::$data = [
-            new PostStruct(99992, 11112),
-            new PostStruct(99993, 11113),
-            new PostStruct(99994, 11114)
-        ];
-
         if(self::$_instance === null) {
             self::$_instance = new self;
+            self::$_instance::$data = [
+                new PostStruct(99992, 11112),
+                new PostStruct(99993, 11113),
+                new PostStruct(99994, 11114)
+            ];
         }
 
         return self::$_instance;
     }
 
+    /**
+     * Static::Method()->Chaining()
+     *
+     * @return mixed
+     */
     public static function get() {
-        return self::$data;
+        $break = 'point';
+        // figured this out by drilling into this while debugging
+        return self::$_instance::$data;
     }
 }

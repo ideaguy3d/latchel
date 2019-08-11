@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
@@ -8,17 +9,23 @@
 
 namespace Latchel;
 
-
+/**
+ * Class CommentStruct - same idea as C# structs
+ *
+ * @package Latchel
+ */
 class CommentStruct
 {
     /**
      * @var string - mock user
      */
     public $user;
+
     /**
      * @var string - mock id
      */
     public $user_id;
+
     /**
      * @var array - just mock data
      */

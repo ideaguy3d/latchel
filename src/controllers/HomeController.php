@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
@@ -23,14 +25,18 @@ class HomeController extends Controller
      */
     private $appName = 'app';
 
+    public function __construct() {
+        $this->posts = HomeController::getPosts('home');
+    }
+
     /**
      * return the home view
      *
      * @return Closure
      */
     public function index(): Closure {
-        $this->posts = HomeController::getPosts('home');
-        return $this->view('template', $this->appName, ['posts' => $this->posts]);
+        $break = 'point';
+        return $this->view('template', $this->appName, $this->posts);
     }
 
     /**
@@ -42,15 +48,10 @@ class HomeController extends Controller
         $posts = Post::where('slug', '=', $slug)->get();
 
         foreach ($posts as &$post) {
-            $post->user = User::find($post->user_id);
-        }
-
-        //TODO: refactor to a built-in array iterator function
-
-        // loop for "post" and "comments" data
-        foreach ($posts as &$post) {
             $post->comments = Comment::where('post_id', '=', $post->post_id)->get();
+            $post->user = User::find($post->user_id);
 
+            //TODO: refactor to a built-in array iterator function
             foreach ($post->comments as &$comment) {
                 $comment->user = User::find($comment->user_id);
             }

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
@@ -17,19 +19,23 @@ class Comment
     private static $_instance = null;
 
     public static function where($postId, $op, $id) {
-        // create some mock data
-        self::$data = [
-            new CommentStruct(), new CommentStruct(), new CommentStruct(),
-            new CommentStruct(), new CommentStruct(), new CommentStruct()
-        ];
-
         if (self::$_instance === null) {
             self::$_instance = new self;
+            // create some mock data
+            self::$data = [
+                new CommentStruct(), new CommentStruct(), new CommentStruct(),
+                new CommentStruct(), new CommentStruct(), new CommentStruct()
+            ];
         }
 
         return self::$_instance;
     }
 
+    /**
+     * Static::Method()->Chaining()
+     *
+     * @return mixed
+     */
     public static function get() {
         return self::$data;
     }

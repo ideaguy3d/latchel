@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 function elixir($path) {
     return $path;
@@ -28,7 +29,8 @@ return function (string $app, array $posts): void { ?>
     <h1>AngularJS PHP blog</h1>
 
     <div class="content">
-        <?php foreach ($posts as $post) { ?>
+        <?php
+        foreach ($posts as $post) { ?>
             <post post-id="<?= $post->post_id ?>" user-name="<?= $post->user->name ?>">
                 <?= $post->html ?>
             </post>
