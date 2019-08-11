@@ -4,6 +4,8 @@ function elixir($path) {
     return $path;
 }
 
+$break = 'point';
+
 return function (string $app, array $posts): void { ?>
     <!DOCTYPE html>
     <html lang="en" data-ng-app="CodeReviewApp">
@@ -30,7 +32,7 @@ return function (string $app, array $posts): void { ?>
             <post post-id="<?= $post->post_id ?>" user-name="<?= $post->user->name ?>">
                 <?= $post->html ?>
             </post>
-        <? } ?>
+        <?php } ?>
     </div>
 
     <div class="footer" data-ng-include="includes/footer.html"></div>
@@ -39,4 +41,6 @@ return function (string $app, array $posts): void { ?>
 
     </body>
     </html>
-<?php } ?>
+
+<?php };
+
