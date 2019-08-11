@@ -8,20 +8,29 @@
 
 namespace Latchel;
 
+use Closure;
+
 
 class HomeController extends Controller
 {
     /**
      * @var array - AngularJS will iterate over this
      */
-    public $posts;
+    private $posts;
 
     /**
-     * @return string
+     * @var string - the name of the folder the UI code lives in
      */
-    public function index(): string {
+    private $appName = 'app';
+
+    /**
+     * return the home view
+     *
+     * @return Closure
+     */
+    public function index(): Closure {
         $this->posts = HomeController::getPosts('home');
-        return $this->view('template', ['posts' => $this->posts]);
+        return $this->view('template', $this->appName, ['posts' => $this->posts]);
     }
 
     /**

@@ -28,8 +28,9 @@ class CommentStruct
     ];
 
     public function __construct() {
+        $max = (count($this->random_names) - 1);
         $r = rand();
-        $rn = $this->random_names[rand(0, count($this->random_names))];
+        $rn = $this->random_names[rand(0, $max)];
         $this->user = "user: $rn";
         $this->user_id = "id: $r";
     }

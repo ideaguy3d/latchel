@@ -4,7 +4,7 @@ function elixir($path) {
     return $path;
 }
 
-return function ($app, $posts) { ?>
+return function (string $app, array $posts): void { ?>
     <!DOCTYPE html>
     <html lang="en" data-ng-app="CodeReviewApp">
     <head>
