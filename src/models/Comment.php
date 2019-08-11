@@ -17,6 +17,12 @@ class Comment
     private static $_instance = null;
 
     public static function where($postId, $op, $id) {
+        // create some mock data
+        self::$data = [
+            new CommentStruct(), new CommentStruct(), new CommentStruct(),
+            new CommentStruct(), new CommentStruct(), new CommentStruct()
+        ];
+
         if (self::$_instance === null) {
             self::$_instance = new self;
         }
@@ -25,11 +31,6 @@ class Comment
     }
 
     public static function get() {
-        // create some mock data
-        self::$data = [
-            new CommentStruct(), new CommentStruct(), new CommentStruct(), new CommentStruct(), new CommentStruct()
-        ];
-
         return self::$data;
     }
 }

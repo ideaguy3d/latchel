@@ -11,6 +11,7 @@ namespace Latchel;
 class Post
 {
     private static $data;
+
     // from "https://stackoverflow.com/questions/125268/chaining-static-methods-in-php"
     private static $_instance = null;
 

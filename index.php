@@ -6,9 +6,11 @@ $homeCtrl = new \Latchel\HomeController();
 /**
  * @var array
  */
-$index = $homeCtrl->index();
+$index = $homeCtrl->index(); // why?!?
 
 $app = 'app';
+
+//$homeCtrl->getPosts()
 $posts = [];
 
 $render = require 'templates/template.php';

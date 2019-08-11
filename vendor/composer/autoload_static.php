@@ -18,6 +18,7 @@ class ComposerStaticInitd7f4f300093a81261abb32c41efedf9d
         array (
             0 => __DIR__ . '/../..' . '/src/controllers',
             1 => __DIR__ . '/../..' . '/src/models',
+            2 => __DIR__ . '/../..' . '/src/structs',
         ),
     );
 

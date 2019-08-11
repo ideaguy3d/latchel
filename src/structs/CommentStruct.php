@@ -11,9 +11,18 @@ namespace Latchel;
 
 class CommentStruct
 {
+    /**
+     * @var string - mock user
+     */
     public $user;
+    /**
+     * @var string - mock id
+     */
     public $user_id;
-    public $random_names = [
+    /**
+     * @var array - just mock data
+     */
+    private $random_names = [
         'Julius', 'Michelle', 'Michael', 'Julie', 'Julissa', 'Lucy', 'Lewis', 'Heather', 'Randy', 'Richard',
         'Lindsey', 'Rebbecca', 'Ray', 'Andy', 'Ashley', 'Travis', 'Jennifer', 'Carolyn', 'Angelina', 'Josh'
     ];

@@ -23,7 +23,7 @@ return function ($app, $posts) { ?>
 
     <div class="header" data-ng-include="includes/header.html"></div>
 
-    <h1>AngularJS PHP blog app</h1>
+    <h1>AngularJS PHP blog</h1>
 
     <div class="content">
         <?php foreach ($posts as $post) { ?>

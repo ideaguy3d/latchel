@@ -5,7 +5,7 @@ namespace Latchel;
 class Controller
 {
     public function view($viewName, $data) {
-        $render = require '/templates' . DIRECTORY_SEPARATOR . $viewName . '.php';
+        $render = require "\\templates\\$viewName.php";
         return '';
     }
 }

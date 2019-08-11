@@ -11,17 +11,32 @@ namespace Latchel;
 
 class HomeController extends Controller
 {
-    public function index() {
-        $posts = HomeController::getPosts('home');
-        return $this->view('template', ['posts' => $posts]);
+    /**
+     * @var array - AngularJS will iterate over this
+     */
+    public $posts;
+
+    /**
+     * @return string
+     */
+    public function index(): string {
+        $this->posts = HomeController::getPosts('home');
+        return $this->view('template', ['posts' => $this->posts]);
     }
 
-    public static function getPosts($slug) {
+    /**
+     * @param $slug string
+     *
+     * @return array
+     */
+    public static function getPosts(string $slug): array {
         $posts = Post::where('slug', '=', $slug)->get();
 
         foreach ($posts as &$post) {
             $post->user = User::find($post->user_id);
         }
+
+        //TODO: refactor to a built-in array iterator function
 
         // loop for "post" and "comments" data
         foreach ($posts as &$post) {
