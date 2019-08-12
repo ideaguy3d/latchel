@@ -17,8 +17,22 @@ return function (string $app, array $posts): void { ?>
         <meta name="robots" content="noindex, nofollow">
         <title>Latchel Code Review</title>
 
-<!--        <link href="https://fonts.googleapis.com/css?family=News+Cycle|Open+Sans:300,400" rel="stylesheet">-->
+        <!-- <link href="https://fonts.googleapis.com/css?family=News+Cycle|Open+Sans:300,400" rel="stylesheet">-->
         <link rel="stylesheet" href="<?= elixir('css/' . $app . '.css') ?>">
+
+        <!-- ng-cloak -->
+        <style type="text/css">
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+                display: none !important;
+            }
+
+            .lat-ng-container {
+                text-decoration: none;
+                padding: 8px;
+                margin: 12px;
+                border: crimson solid 2px;
+            }
+        </style>
     </head>
 
 
@@ -29,8 +43,7 @@ return function (string $app, array $posts): void { ?>
     <h1>AngularJS PHP blog</h1>
 
     <div class="content">
-        <?php
-        foreach ($posts as $post) { ?>
+        <?php foreach ($posts as $post) { ?>
             <post post-id="<?= $post->post_id ?>" user-name="<?= $post->user->name ?>">
                 <?= $post->html ?>
             </post>
