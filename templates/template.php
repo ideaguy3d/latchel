@@ -17,7 +17,7 @@ return function (string $app, array $posts): void { ?>
         <meta name="robots" content="noindex, nofollow">
         <title>Latchel Code Review</title>
 
-        <link href="https://fonts.googleapis.com/css?family=News+Cycle|Open+Sans:300,400" rel="stylesheet">
+<!--        <link href="https://fonts.googleapis.com/css?family=News+Cycle|Open+Sans:300,400" rel="stylesheet">-->
         <link rel="stylesheet" href="<?= elixir('css/' . $app . '.css') ?>">
     </head>
 
@@ -39,6 +39,7 @@ return function (string $app, array $posts): void { ?>
 
     <div class="footer" data-ng-include="includes/footer.html"></div>
 
+    <script src="js/vendor.js"></script>
     <script src="<?= elixir('js/' . $app . '.js') ?>"></script>
 
     </body>

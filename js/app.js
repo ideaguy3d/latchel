@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+    angular.module('CodeReviewApp', []);
     angular.module('CodeReviewApp')
         .directive('post', [
             function () {
