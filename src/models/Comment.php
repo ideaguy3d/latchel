@@ -20,12 +20,13 @@ class Comment
 
     public static function where($postId, $op, $id) {
         if (self::$_instance === null) {
-            self::$_instance = new self;
             // create some mock data
             self::$data = [
                 new CommentStruct(), new CommentStruct(), new CommentStruct(),
                 new CommentStruct(), new CommentStruct(), new CommentStruct()
             ];
+
+            self::$_instance = new self;
         }
 
         return self::$_instance;
@@ -37,6 +38,6 @@ class Comment
      * @return mixed
      */
     public static function get() {
-        return self::$data;
+        return self::$_instance;
     }
 }

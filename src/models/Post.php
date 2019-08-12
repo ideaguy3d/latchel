@@ -28,7 +28,7 @@ class Post
     public static function where($type, $op, $slug) {
         if(self::$_instance === null) {
             self::$_instance = new self;
-            self::$_instance::$data = [
+            self::$data = [
                 new PostStruct(99992, 11112),
                 new PostStruct(99993, 11113),
                 new PostStruct(99994, 11114)
@@ -44,8 +44,7 @@ class Post
      * @return mixed
      */
     public static function get() {
-        $break = 'point';
         // figured this out by drilling into this while debugging
-        return self::$_instance::$data;
+        return self::$data;
     }
 }

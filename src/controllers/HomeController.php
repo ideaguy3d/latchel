@@ -47,13 +47,15 @@ class HomeController extends Controller
     public static function getPosts(string $slug): array {
         $posts = Post::where('slug', '=', $slug)->get();
 
-        foreach ($posts as &$post) {
-            $post->comments = Comment::where('post_id', '=', $post->post_id)->get();
-            $post->user = User::find($post->user_id);
+        foreach ($posts as $post) {
+            $post->comments = Comment::where('post_id', '=', $post->post_id)::get();
+            // create a mock user id, comments should always be an array of standard classes
+            $userId = $post->comments::$data[0]->user;
+            $post->user = User::find($userId);
 
             //TODO: refactor to a built-in array iterator function
             foreach ($post->comments as &$comment) {
-                $comment->user = User::find($comment->user_id);
+                $comment->user = User::find($userId);
             }
         }
 

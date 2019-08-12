@@ -17,10 +17,12 @@ namespace Latchel;
 class UserStruct
 {
     public $name;
-    public $comments;
 
-    public function __construct($comments) {
-        $this->name = $comments[0]->user;
-        $this->comments = $comments;
+    public function __construct(string $username = null, array $comments = null) {
+        if($comments) $this->name = $comments[0]->user;
+        else {
+            $username = preg_replace("/\w+:\s+/", '', $username);
+            $this->name = $username;
+        }
     }
 }
