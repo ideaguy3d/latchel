@@ -1,0 +1,30 @@
+
+Hi ^_^/ Eduard.
+
+It was nice to meet you as well (:
+
+I finished the project
+http://three29.julius3d.com
+
+Everything works fine for me on Google Chrome 
+except when in "incognito" mode. When in "incognito"
+mode the cookies stop working as expected. 
+
+Git repo files for this project:
+https://github.com/ideaguy3d/php-algo-mws/blob/master/index.php
+https://github.com/ideaguy3d/php-algo-mws/blob/master/api.php
+
+1st commit:
+https://github.com/ideaguy3d/php-algo-mws/commit/15700b3fd438889806c637f590511f2a019c6319
+2nd commit:
+https://github.com/ideaguy3d/php-algo-mws/commit/2efe87567323830be1ce5f5c26bb7f929ed4f749
+3rd commit: 
+https://github.com/ideaguy3d/php-algo-mws/commit/e9868d7623db9097aa5e379af3abfa993f2f262a
+4th commit: 
+https://github.com/ideaguy3d/php-algo-mws/commit/e8e90ea98efeb4064ea4f1b2dcbfa0e7172f5bf6 
+
+
+
+
+
+//

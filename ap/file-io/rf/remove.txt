@@ -1,0 +1,18 @@
+//https://community.spiceworks.com/topic/1953384-disabling-windows-store-on-windows-10-home-edition
+//https://www.easeus.com/todo-backup-resource/how-to-stop-windows-10-from-automatically-update.html
+
+right click powershell > run as administrator
+
+
+$ get-appxpackage -allusers
+
+
+// "edit > find..."
+// Name : Microsoft.WindowsStore
+
+
+$ Remove-AppxPackage Microsoft.WindowsStore_11804.1001.10.0_x64__8wekyb3d8bbwe
+
+
+
+//

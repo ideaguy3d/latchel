@@ -1,0 +1,47 @@
+I have changed the terms in this proposal.
+
+$20 per hour for a Maximum of 20 hours per week to build 
+the prototype Hosted on Google Cloud of This Business Social network.
+I will actually work on it about 40 hours a week, but still only bill for 20 hours.
+
+It will be decent looking web app, and will ONLY have the most 
+fundamental functionality (It will NOT have a ton of "bells and whistles").
+
+An example of what it will look and function like is my project
+http://edhub.co/   but instead of "job posts" there will be "IP posts"
+
+I built http://edhub.co/ in 1 week so imagine what I could build in 4 weeks.
+
+~ Prototype Functionality ~ 
+
+There will be 2 user authentication types:
+1 - the user who posts IP
+2 - the user who pays for the IP
+
+Users will be able to see recent IP posts that they can click for more details 
+and request an interest to pay for the IP.  
+
+There will 2 admin interfaces:
+1 - Users who post IP can see users are interested in using the IP
+2 - Users who want to pay for IP can see status of IP requests they've made.
+
+There will be a basic messaging system so users can communicate.
+
+~ Payment System ~
+I do not know how long it will take me to integrate a payment system
+using the PayPal API, but I will try VERY hard to get this working too.
+Although I cannot guarantee I can build this with in a month I can
+guarantee I will try my hardest. 
+
+I can also make a simple Interaction design in Adobe XD so you get a feel
+of what I'm going to code before coding it. 
+
+Again I will emphasize with just a month, it will be pretty basic but decent 
+looking and have the MOST important core functionality implemented.
+
+The technology I will use:
+HTML, CSS, JavaScript, PHP/SQL, Google Cloud, AngularJS, Firebase, jQuery, Sass, Gulp/Grunt, Node.js, The Adobe Creative Suite, and Data Structures and Algorithms.
+
+The aforementioned tech is the same tech I was using while working Full time 
+8 hours a day 5 days a week for 5 months 
+while working at LAB 916 so it is nice and fresh in my mind. 

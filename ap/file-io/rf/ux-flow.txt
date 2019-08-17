@@ -1,0 +1,89 @@
+		~ LENDING TREE QUESTIONAIRE ANIMATION SEQUENCE ~
+		  ____________________________________________
+	
+
+0) Custom Intro
+
+1) How will this property be used? 
+	~ 3 options
+
+
+2) Zip code of property
+	~ input field w/ 'continue' btn beneath 
+		> "validating zip" that shows city
+
+
+3) Please estimate the value of the property.
+	~ a literal slider that the user drags from $60k-$2m+	
+	~ as user slides this it updates value above it.
+
+
+4) What is the remaining 1st mortgage balance?
+	~ a literal slider that the user drags from 0%-125%	
+	~ as user slides this it updates value above it.
+
+5) Do you have a second mortgage?
+	~ 2 btn's, a yes and no btn. 
+		~ if 'yes'
+			6a) What is the remaining balance on the 2nd mortgage?
+				~ a literal slider that the user drags from X to Y val	
+				~ as user slides this it updates value above it.
+			~ it then goes to 6b slide
+		~ if 'no'
+			6b) Would you like to borrow additional cash?
+				~ a literal slider that the user drags from X to Y val	
+				~ as user slides this it updates value above it.
+
+
+7) Estimate your credit score.
+	~ 4 btn's: "excellent" & "good" & "fair" and "poor" btn's. 
+
+
+8) When were you born? 
+	~ 3 select option input fields with data validation
+
+
+9) Have you or your spouse served in the military? 
+	~ if 'yes'
+		10a) Do you currently have a VA loan?
+			~ a yes & no btn.
+		~ if 'yes'
+			~ 10b)
+		~ if 'no'
+			~ 10b) 
+
+	~ if 'no'
+		10b) Have you had a bankruptcy or foreclosure in the last 7 years?
+			~ 4 btn's: "no", "bankruptcy", "foreclosure", "both"
+
+11a) Both 12) Bankruptcy & 13) Foreclosure have their own slide
+
+11b) if user clicked not on 10b) then it'll take them to 14)
+
+12) How long ago was the bankruptcy?
+	~ a literal slider that the user drags from X to Y val	
+	~ as user slides this it updates value above it.
+
+13) How long ago was the foreclosure?
+	~ a literal slider that the user drags from X to Y val	
+	~ as user slides this it updates value above it.
+
+14) What is your current street address?
+	~ form with 'street adress', 'zip code', 'city', & a "Continue > " btn. 
+	~ form has frontend validation
+
+15) What is your name? 
+	~ form w/ 'first' & 'last' name fields. and a 'Continue >' btn. 
+	~ has validation 
+
+
+16) Great! Your rates are ready to view. Let's create a login to save your progress.
+	~ this part will probably just ask the user to call a Phoenix Mortgage Group agent. 
+	~ so it'll say like "Give us a call to create your login ^_^" w/the contact us info.
+
+
+
+
+
+
+//

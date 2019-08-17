@@ -1,0 +1,71 @@
+		~ SONY ~
+
+Expert level coding skills is a must
+
+Experience with enterprise application development strongly desired
+
+Strong understanding of DOM ( HTML, CSS3, SASS, JS, JSON )
+
+Experience with major JS Frameworks ( Ember, Angular, React )
+
+Exceptional JS skills ( Vanilla JS, JQuery )
+
+Build tools ( Grunt, Gulp, Webpack )
+
+Source/Package Mgmt ( Git, Node, NPM )
+
+Mobile development experience (React Native, Ionic, Phonegap, Cordova )
+
+Web-animation: ( GSAP, Velocity, CSS3, SVG, Canvas )
+
+Desired experience: ( Redux, Flux, Reflux, Immutable JS, React Router, React Native )
+
+Prototyping tools ( Invision, Axure, FramerJS )
+
+Experience with responsive mobile design
+
+Loves working with Chrome devtools, Firebug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

@@ -49,7 +49,7 @@ class HomeController extends Controller
 
         foreach ($posts as $post) {
             $post->comments = Comment::where('post_id', '=', $post->post_id)::get();
-            // create a mock user id, comments should always be an array of standard classes
+            // some odd chaining chaining syntax to get this to work correctly
             $userId = $post->comments::$data[0]->user;
             $post->user = User::find($userId);
 
