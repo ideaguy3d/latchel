@@ -20,6 +20,9 @@
 			"Latchel\\": ["src/controllers", "src/models", "src/structs"]
 		}
 	},
+	"require": {
+		"ext-finfo": "*"
+	},
 	"config": {
 		"process-timeout": 0
 	},
