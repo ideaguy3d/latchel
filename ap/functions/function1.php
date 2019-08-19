@@ -26,11 +26,19 @@ function practiceOne() {
 
 e();
 
-$someNum = fatalErrorPrac(2,4);
-echo "some num = $someNum ", gettype($someNum);
+//$someNum = fatalErrorPrac(2,4);
+//echo "some num = $someNum ", gettype($someNum);
 
 function fatalErrorPrac(?float $x, ?float $y): float {
    return (double)$x * (double)$y;
 }
+
+if(!is_callable(function () {echo 'hello there';})) {
+    function sayHello() {
+        echo "Hello ^_^/";
+    }
+}
+
+sayHello();
 
 $break = 'point';

@@ -1,0 +1,18 @@
+
+Q1: Fatal Error...
+Q2: No, because echo is a language construct...
+Q3: True
+Q4: Hello World
+Q5: float
+Q6: This produces a notice error
+Q7: This produces an error
+Q8: This produces an error
+Q9: B
+Q10: This produces an error, the closure is not defined in namespace C
+
+
+
+
+
+
+//
