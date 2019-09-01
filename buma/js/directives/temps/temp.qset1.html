@@ -1,0 +1,34 @@
+<!-- ctrl=QuestionSetOneCtrl -->
+<section id="bf-quote">
+	<!-- data driven slides -->
+	<div ng-repeat="question in myQuestions" class="question
+		{{ question.questionState === 'answered' ? 'answered' : 'unanswered' }}
+		{{ $index === activeQuestion ? 'active' : 'inactive' }}">
+		
+		<!-- The Question -->
+		<h3 class="q-txt">{{ question.question }}</h3>
+		
+		<!-- Inner Loop Begins: -->
+		<div class="bf-ans" ng-class="{'image': answer.image, 'selected': isSelected($parent.$index, $index),
+                    'correct': isCorrect($parent.$index, $index)}" ng-style="{'background-image': 'url({{answer.image}})'}"
+		     data-ng-click="selectAnswer($parent.$index, $index)" ng-repeat="answer in question.answers">
+			<p class="bf-ans-para">{{ answer.text }}</p>
+		</div>
+		
+		<!-- feedback: -->
+		<div class="feedback">
+			<!--<p>{{ question.feedback }}</p>-->
+			<div ng-show="question.question !== 'Which JavaScript Framework is the worst?'" class="btn btn-sm btn-info"
+			     data-ng-click="selectContinue()">
+				<strong>Continue</strong>
+			</div>
+			<a data-ng-href="#/matches" ng-show="question.question === 'Which JavaScript Framework is the worst?'"
+			        class="btn btn-sm btn-info">
+				<strong>See Matches</strong>
+			</a>
+			<p class="q-txt"><strong>Most Disliked: </strong>
+				<small>{{userAnswer}}</small>
+			</p>
+		</div>
+	</div>
+</section>

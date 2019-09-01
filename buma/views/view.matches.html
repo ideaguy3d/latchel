@@ -1,0 +1,33 @@
+<!--
+ <div class="card meetings cf">
+	<div class="textintro">
+		<h1>Matches</h1>
+
+		<p>Add something you dislike</p>
+		<form name="myform" class="formgroup addmeeting cf" ng-submit="addMeeting()" novalidate>
+			<div class="inputwrapper">
+				<input type="text" name="meetingname" placeholder="What do you dislike?" ng-model="meetingname"
+				       ng-required="true">
+			</div>
+			<button class="btn" type="submit" ng-disabled="myform.$invalid">+</button>
+		</form>
+	</div>
+</div>
+
+<br>
+ -->
+
+<div class="card meetings cf">
+	<h2>Your Matches so far...</h2>
+	<h4>Matches: </h4>
+	
+	<button data-ng-click="matchCtrl.seeMatches()" style="padding: 20px; font-size: 24px; color: purple">See Matches</button>
+	<br><br>
+	<ul>
+		<li class="j-match" ng-repeat="match in matches">
+			<i>{{ match.user }}</i> is a <strong>Grade {{ match.grade }}</strong> match
+		</li>
+	</ul>
+	
+	<br><hr>
+</div>
