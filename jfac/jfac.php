@@ -1,3 +1,8 @@
+
+<?php
+
+return function($facId, $timesVisited) { ?>
+
 <!doctype html>
 
 <html lang="en" data-ng-app="myApp">
@@ -22,6 +27,8 @@
 <nav class="cf" ng-include="'jfac/views/nav.html'"></nav>
 
 
+facId: <?= htmlspecialchars($facId) ?> visited <?= $timesVisited ?> times
+
 <!-- app entry point -->
 <main class="cf" ng-view></main>
 
@@ -40,6 +47,10 @@
 <script src="jfac/js/lib/angular/angular-route.min.js"></script>
 <script src="jfac/js/lib/angular/angular-animate.min.js"></script>
 
+<script>
+    let facIdGlobal = "<?= $facId ?>";
+</script>
+
 <!-- Custom JavaScript -->
 <script src="jfac/js/app.js"></script>
 <!-- data controllers -->
@@ -47,3 +58,5 @@
 
 </body>
 </html>
+
+<?php }; // close the function
