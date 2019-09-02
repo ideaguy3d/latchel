@@ -33,6 +33,7 @@ function advancedFixedArrayPrac() {
 
     $totalCounts = number_format($count);
     echo "\n\nProgram Complete, scanned $totalCounts records\n\n";
+
     //$break = 'point';
     fclose($handle);
 }

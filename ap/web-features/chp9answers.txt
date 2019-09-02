@@ -1,0 +1,27 @@
+
+Q1. Ron
+
+
+Q2. <input type="text" name="janedoe[numberonefan]"/>
+
+
+Q3. No, a copy of the information...
+
+
+Q4. a Notice for $a, a warning for session_start()
+
+
+Q5. prevent the browser...
+
+
+
+
+
+
+
+
+
+
+
+
+//

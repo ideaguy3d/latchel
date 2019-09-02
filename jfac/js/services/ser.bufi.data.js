@@ -1,4 +1,5 @@
 (function () {
+
     "use strict";
 
     angular.module('myApp').factory('jBufiDataSer', ["$http",
@@ -13,4 +14,5 @@
             }
         }
     ]);
+
 })();

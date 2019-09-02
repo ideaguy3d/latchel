@@ -9,11 +9,13 @@ require __DIR__ . '\vendor\autoload.php';
 //-----------------------------------------
 $renderLatchel = false;
 
+
 if($renderLatchel) {
     renderLatchel();
 }
-
-
+else {
+    require 'jfac/index.html';
+}
 
 
 function renderLatchel() {
