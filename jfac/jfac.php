@@ -1,7 +1,7 @@
 
 <?php
 
-return function($facId, $timesVisited) { ?>
+return function($facId, $timesVisited, $clientFac) { ?>
 
 <!doctype html>
 
@@ -13,21 +13,22 @@ return function($facId, $timesVisited) { ?>
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
     <!-- This will be getting required by PHP relative to roojfac -->
-    <!--<link href='https://fonts.googleapis.com/css?family=Lato:400,100,700,900' rel='stylesheet' type='text/css'>-->
+    <!--<link href='https://fonts.googleapis.com/css?family=Lato:400,100,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="jfac/css/font-awesome.min.css">
     <link rel="stylesheet" href="jfac/css/style.css">
-    <link rel="stylesheet" href="jfac/css/julius.css">
+    <link rel="stylesheet" href="jfac/css/julius.css">-->
+
 </head>
 
 
 <body>
 
 
-<!-- horizontal navigation, relative to PHP root -->
+<!-- horizontal navigation, relative to PHP root
 <nav class="cf" ng-include="'jfac/views/nav.html'"></nav>
+-->
 
-
-facId: <?= htmlspecialchars($facId) ?> visited <?= $timesVisited ?> times
+<br><br>
 
 <!-- app entry point -->
 <main class="cf" ng-view></main>
@@ -49,6 +50,7 @@ facId: <?= htmlspecialchars($facId) ?> visited <?= $timesVisited ?> times
 
 <script>
     let facIdGlobal = "<?= $facId ?>";
+    let facSelectGlobal = "<?= $clientFac ?>";
 </script>
 
 <!-- Custom JavaScript -->
