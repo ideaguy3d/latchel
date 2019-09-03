@@ -21,12 +21,22 @@ echo "\n\nx2a = $x2a, x2b = $x2b, y2 = $y2\n\n";
 
 
 // variable variable names
-$a = 'rate' . whichRate(1);
+$a = 'rate' . whichRate(2);
 
 $$a = '2.24';
 
+$rate_one = $rate_one ?? null;
+$rate_two = $rate_two ?? null;
+
+if($rate_one) {
 /** @var string $rate_one - is a variable variable */
 echo "\n\n$rate_one\n\n";
+}
+else if($rate_two) {
+/** @var string $rate_two - is a variable variable */
+echo "\n\n$rate_two\n\n";
+}
+
 
 
 function whichRate (int $v): string {
