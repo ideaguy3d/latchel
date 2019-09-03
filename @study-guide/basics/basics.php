@@ -6,6 +6,7 @@
  * Time: 6:00 PM
  */
 
+// float to int prac
 $x1 = (int)((0.1 + 0.7) * 10.0); // 0.7
 $y1 = (int)((0.1 + 0.5) * 10.0); //0.6
 
@@ -17,6 +18,32 @@ $y2 = (int)$y2;
 
 echo "\n\nx1 = $x1, y1 = $y1\n\n";
 echo "\n\nx2a = $x2a, x2b = $x2b, y2 = $y2\n\n";
+
+
+// variable variable names
+$a = 'rate' . whichRate(1);
+
+$$a = '2.24';
+
+/** @var string $rate_one - is a variable variable */
+echo "\n\n$rate_one\n\n";
+
+
+function whichRate (int $v): string {
+    if($v = 1) {
+        return '_one';
+    }
+    else if($v = 2) {
+        return '_two';
+    }
+    else {
+        return '_base';
+    }
+}
+
+
+
+
 
 
 //
