@@ -38,7 +38,6 @@ echo "\n\n$rate_two\n\n";
 }
 
 
-
 function whichRate (int $v): string {
     if($v = 1) {
         return '_one';
