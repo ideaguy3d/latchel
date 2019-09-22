@@ -13,10 +13,14 @@ $a1 = [
     'user_name' => 'Julius Alvarado'
 ];
 
+$b1 = 0b1001;
+
+echo "\n\nb1 = $b1\n\n";
+
 echo "\n\nuser id = " . $a1['user_id'];
 
 // this'll break
-echo "\n\nuser id = " . $a1->user_id;
+echo "\n\nuser id = {$a1['user_id']}\n\n";
 
 $break = 'point';
 
