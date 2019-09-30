@@ -6,6 +6,32 @@
  * Time: 3:34 PM
  */
 
+function n() {
+  echo "\n\n--------------------------------------------\n\n";
+};
+
+
+//-- ArrayObject class prac --\\
+$a = ['one', 'two'];
+$b = ['two', 'three', 'four'];
+$inv = ['n10_envelope' => 5000, 'brown_kraft_paper' => 10500, 'ink_jet_envelopes' => 3000];
+
+$invObj = new ArrayObject($inv);
+
+n();
+// a php notice
+var_dump($invObj->n10_envelope);
+
+// fix the notice
+$invObj->setFlags(ArrayObject::ARRAY_AS_PROPS);
+n();
+var_dump($invObj->n10_envelope);
+
+n();
+echo count($a + $b);
+n();
+//echo count($b - $a);
+
 //-- diff prac --\\
 $mandatoryKeys = ['email', 'password', 'token', 'username'];
 $mockPostKeys = ['email', 'password',];
