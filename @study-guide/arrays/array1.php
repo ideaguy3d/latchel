@@ -6,9 +6,33 @@
  * Time: 3:34 PM
  */
 
+
+// some base data to prac on
+$jobData = [
+    ['job_type', 'seal_type', 'color'],
+    ['pressure seal', 'converted', '1/0'],
+    ['post card', 'n/a', '1/4'],
+    ['self mailer', 'n/a', '4/0']
+];
+
+$jobData2 = [
+    ['job_type', 'seal_type', 'color'],
+    ['letter', 'n/a', '1/0'],
+    ['letter', 'n/a', '1/0'],
+    ['flat', 'n/a', '1/0']
+];
+
+$jobRec = ['pressure seal', 'converted', '1/0'];
+
 function n() {
   echo "\n\n--------------------------------------------\n\n";
 };
+
+// list prac
+foreach ($jobData2 as [$a, $b, $c]) {
+    n();
+    echo "A: $a, B: $b";
+}
 
 
 //-- ArrayObject class prac --\\
@@ -42,21 +66,7 @@ $diff = array_diff($mandatoryKeys, $mockPostKeys, $mockPostKeys2);
 $break = 'point';
 
 //-- union prac --\\
-$jobData = [
-    ['job_type', 'seal_type', 'color'],
-    ['pressure seal', 'converted', '1/0'],
-    ['post card', 'n/a', '1/4'],
-    ['self mailer', 'n/a', '4/0']
-];
 
-$jobData2 = [
-    ['job_type', 'seal_type', 'color'],
-    ['letter', 'n/a', '1/0'],
-    ['letter', 'n/a', '1/0'],
-    ['flat', 'n/a', '1/0']
-];
-
-$jobRec = ['pressure seal', 'converted', '1/0'];
 
 //$jobDataUnion = $jobData + $jobData2;
 $jobDataUnion2 = array_merge($jobData, array_slice($jobData2, 1));
