@@ -29,7 +29,19 @@ echo `whoami`;
     <input type="file" name="pics[]">
     <input type="file" name="pics[]">
 
+    <br><br>
     <!-- send data to form -->
     <input type="submit" value="Start Processing">
+</form>
+
+<br>
+<hr><br>
+
+<form action="post.php" method="post" enctype="multipart/form-data">
+    Send these files:<br/>
+
+    <input name="userfile[]" type="file"/><br/><br>
+
+    <input type="submit" value="Send files"/>
 </form>
 
