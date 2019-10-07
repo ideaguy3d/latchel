@@ -30,13 +30,15 @@ function basicGeneratorPractice(): void {
     }
 }
 
+//-- practice "yield $key => $value":
 //keyValueGeneratorPrac();
-
+$break = 'point';
 function keyValueGeneratorPrac(): void {
     // yield by key => value
     function genKeyVal(): Generator {
+        $key = 'paper_count';
         for ($i = 0; $i < 5; ++$i) {
-            yield 'paper_count' => $i;
+            yield $key => $i;
         }
     }
 
@@ -45,9 +47,9 @@ function keyValueGeneratorPrac(): void {
     }
 }
 
-// yield by reference function &fname
-
-// yieldByReferencePractice();
+//-- yield by reference function &funcName, I don't understand this though,
+//-- I probably need to work the section on returning functions by ref:
+//yieldByReferencePractice();
 
 function yieldByReferencePractice() {
     function &pracByRef(): Generator {
@@ -61,31 +63,64 @@ function yieldByReferencePractice() {
     return $y;
 }
 
-function clientPrint () {
-    return 'piece printed';
+//-- practice using return after all yield's:
+//pracYieldReturn();
+$break = 'point';
+function pracYieldReturn () {
+
+    function clientPrint(): string {
+        return 'piece printed';
+    }
+
+    function clientMail(): string {
+        return 'piece mailed';
+    }
+
+    function clientJobDone($status): string {
+        // $status has already been yield'ed so it's blank
+        return "piece has been printed and mailed because $status.";
+    }
+
+    function clientGenerator() {
+        yield clientPrint();
+        $mail = yield clientMail();
+
+        return clientJobDone($mail);
+    }
+
+    $gen = clientGenerator();
+
+    foreach ($gen as $key => $value) {
+        echo "\n$key, $value\n";
+    }
+
+    echo "\n" . $gen->getReturn() . "\n";
+
 }
 
-function clientMail () {
-    return 'piece mailed';
+// practice generator delegation (aka "yield from"):
+pracGeneratorDelegation();
+$break = 'point';
+function pracGeneratorDelegation () {
+    function generator(): Generator {
+        $a = [1,2,3];
+        yield from $a;
+        yield from range(4,6);
+        yield from sevenAteNine();
+    }
+    
+    function sevenAteNine (): Generator {
+        for($i=7; $i<10; ++$i) {
+            yield $i;
+        }
+    }
+
+    $gen = generator();
+
+    foreach ($gen as $value) {
+        echo "\n$value\n";
+    }
 }
-
-function clientJobDone ($status) {
-    return 'piece has been printed and mailed';
-}
-
-function clientGenerator (): Generator {
-    $print = yield clientPrint();
-    $mail = yield clientMail();
-    return clientJobDone($mail);
-}
-
-$gen = clientGenerator();
-
-foreach ($gen as $key => $value) {
-    echo "\n$key, $value\n";
-}
-
-echo $gen->getReturn();
 
 
 
