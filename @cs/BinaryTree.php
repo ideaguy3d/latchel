@@ -76,11 +76,15 @@ class BinaryTree
     }
     
     public function inOrderTraverse(\Closure $callback) {
-    
+        $this->inOrderTraverseNode($this->root, $callback);
     }
     
     private function inOrderTraverseNode($node, $callback) {
-    
+        if($node !== null) {
+            $this->inOrderTraverseNode($node->left, $callback);
+            $callback($node->key);
+            $this->inOrderTraverseNode($node->right, $callback);
+        }
     }
     
     public function preOrderTraverse(\Closure $callback) {
@@ -96,6 +100,33 @@ class BinaryTree
     }
     
     private function postOrderTraverseNode($node, $callback) {
+    
+    }
+    
+    /**
+     * Get the key with the lowest value
+     *
+     * @param $key
+     */
+    public function min($key) {
+    
+    }
+    
+    /**
+     * Get the key w/the highest value
+     *
+     * @param $key
+     */
+    public function max($key) {
+    
+    }
+    
+    /**
+     * Remove a node via its' key
+     *
+     * @param $key
+     */
+    public function remove($key) {
     
     }
     

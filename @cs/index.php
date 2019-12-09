@@ -18,7 +18,15 @@ foreach($set1 as $v) {
     $binaryTree->insert($v);
 }
 
+echo "\n----------------------------------------------------------------------\n";
 
+$callback = function($value){
+    echo " [$value] ";
+};
+
+$binaryTree->inOrderTraverse($callback);
+
+echo "\n----------------------------------------------------------------------\n";
 
 
 
