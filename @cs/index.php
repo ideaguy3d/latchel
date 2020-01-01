@@ -6,27 +6,32 @@
  * Time: 1:46 AM
  */
 
-require('BinaryTree.php');
+require('BinarySearchTree.php');
 
-use julius\BinaryTree;
+use julius\BinarySearchTree;
 
 $set1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
 
-$binaryTree = new BinaryTree();
+$binaryTree = new BinarySearchTree();
 
 foreach($set1 as $v) {
     $binaryTree->insert($v);
 }
 
-echo "\n----------------------------------------------------------------------\n";
+echo "\n----------------------------------------------------------------------------------\n";
 
-$callback = function($value){
+$treeSorted = [];
+$callback = function($value) use (&$treeSorted) {
+    $treeSorted[] = "n<$value>";
     echo " [$value] ";
 };
 
 $binaryTree->inOrderTraverse($callback);
 
-echo "\n----------------------------------------------------------------------\n";
+echo "\n\n";
+var_export($treeSorted);
+
+echo "\n----------------------------------------------------------------------------------\n";
 
 
 

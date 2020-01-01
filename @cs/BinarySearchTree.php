@@ -1,4 +1,6 @@
 <?php
+namespace julius;
+
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
@@ -6,12 +8,18 @@
  * Time: 1:17 AM
  */
 
-namespace julius;
 
-class BinaryTree
+class BinarySearchTree
 {
     private $root = null;
-    
+
+    /**
+     * Primary Public Function
+     *
+     * Makes an indirect recursive call
+     *
+     * @param $key
+     */
     public function insert($key) {
         $node = new class ($key) {
             public $key;
@@ -32,8 +40,20 @@ class BinaryTree
             $this->insertNode($this->root, $node);
         }
     } // END OF: insert()
-    
-    private function insertNode($node, $newNode) {
+
+    /**
+     * Private Recursive Helper Function
+     *
+     * We don't operate on the result of recursive call so we don't
+     * return the recursive call.
+     *
+     * The recursive call will just do internal work so nothing has
+     * to be returned
+     *
+     * @param $node
+     * @param $newNode
+     */
+    private function insertNode($node, $newNode): void {
         if($newNode->key < $node->key) {
             if($node->left === null) {
                 $node->left = $newNode;
@@ -51,11 +71,20 @@ class BinaryTree
             }
         }
     } // END OF: insertNode()
-    
+
+    /**
+     * @return mixed root - can be null or a Node
+     */
     public function getRoot() {
         return $this->root;
     }
-    
+
+    /**
+     * Primary Public function
+     *
+     * @param $key
+     * @return bool
+     */
     public function search($key) {
         return $this->searchNode($this->root, $key);
     }
@@ -74,19 +103,40 @@ class BinaryTree
             return true;
         }
     }
-    
+
+    /**
+     * Primary Public Function
+     *
+     * @param \Closure $callback
+     */
     public function inOrderTraverse(\Closure $callback) {
         $this->inOrderTraverseNode($this->root, $callback);
     }
-    
+
+    /**
+     * Private Recursive Helper Function
+     *
+     * @param $node
+     * @param $callback
+     */
     private function inOrderTraverseNode($node, $callback) {
+        $key = $node->key ?? 'null';
+        echo "\ncurrent key: $key";
+        
         if($node !== null) {
             $this->inOrderTraverseNode($node->left, $callback);
-            $callback($node->key);
+            $recurse1 = "point1";
+            $callback($key);
             $this->inOrderTraverseNode($node->right, $callback);
+            $recurse2 = 'point2';
         }
     }
-    
+
+    /**
+     * Primary Public Function
+     *
+     * @param \Closure $callback
+     */
     public function preOrderTraverse(\Closure $callback) {
         
     }
