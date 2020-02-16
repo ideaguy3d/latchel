@@ -6,13 +6,19 @@
  * Time: 3:34 PM
  */
 
+e();
+
+practiceOne();
+
+e();
+//$someNum = fatalErrorPrac(2,4);
+//echo "some num = $someNum ", gettype($someNum);
+
+
 function e() {
     echo "\n\n----\n\n";
 }
 
-e();
-
-//practiceOne();
 function practiceOne() {
     // try to fully grok variable functions
     $lambdaOne = function (int $x): string {
@@ -24,10 +30,40 @@ function practiceOne() {
     echo "\n\n hours to learn = " . $lambdaOne(2400);
 }
 
+class Animal
+{
+    protected $nature;
+
+    public function getValue() {
+        $boundVar = 'Animal';
+        return function (string $name) use ($boundVar) {
+            return "$name is a " . $this->nature . ' ' . $boundVar;
+        };
+    }
+}
+
+class Dog extends Animal
+{
+    protected $nature = 'happy';
+}
+
+class Cat extends Animal
+{
+    protected $nature = 'cute';
+}
+
 e();
 
-//$someNum = fatalErrorPrac(2,4);
-//echo "some num = $someNum ", gettype($someNum);
+$cat = new Cat;
+$dog = new Dog;
+
+$animNature = $cat->getValue();
+echo $animNature('max');
+e();
+$animNature = $animNature->bindTo($dog);
+echo $animNature('skipper');
+
+e();
 
 function fatalErrorPrac(?float $x, ?float $y): float {
     return (double)$x * (double)$y;
@@ -70,7 +106,6 @@ function paramTypes(int $req, int $opt = null, ...$vari): void {
     }
 
 }
-
 
 
 $break = 'point';

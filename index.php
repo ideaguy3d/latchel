@@ -16,9 +16,7 @@ if (empty($_SESSION['count'])) {
 }
 else {
     $_SESSION['count']++;
-
 }
-
 
 if ($renderLatchel) {
     renderLatchel();
