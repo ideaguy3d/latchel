@@ -28,6 +28,14 @@ $callback = function($value) use (&$treeSorted) {
 
 $binaryTree->inOrderTraverse($callback);
 
+echo "\n----------------------------------------------------------------------------------\n";
+
+$preOrderTraverseCallback = function($value) {
+  echo "\n pre order traverse value = $value \n";
+};
+
+$binaryTree->preOrderTraverse($preOrderTraverseCallback);
+
 echo "\n\n";
 var_export($treeSorted);
 
