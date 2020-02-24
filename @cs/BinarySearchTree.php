@@ -138,11 +138,15 @@ class BinarySearchTree
      * @param \Closure $callback
      */
     public function preOrderTraverse(\Closure $callback) {
-        
+        $this->preOrderTraverseNode($this->root, $callback);
     }
     
-    private function preOrderTraverseNode($node, $callback) {
-    
+    private function preOrderTraverseNode(object $node, callable $callback) {
+        if($node !== null) {
+            $callback($node->key);
+            $this->preOrderTraverseNode($node->left, $callback);
+            $this->preOrderTraverseNode($node->right, $callback);
+        }
     }
     
     public function postOrderTraverse(\Closure $callback) {
