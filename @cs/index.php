@@ -23,7 +23,7 @@ echo "\n------------------------------------------------------------------------
 $treeSorted = [];
 $callback = function($value) use (&$treeSorted) {
     $treeSorted[] = "n<$value>";
-    echo " [$value] ";
+    echo " in[$value] ";
 };
 
 $binaryTree->inOrderTraverse($callback);
@@ -31,13 +31,13 @@ $binaryTree->inOrderTraverse($callback);
 echo "\n----------------------------------------------------------------------------------\n";
 
 $preOrderTraverseCallback = function($value) {
-  echo "\n pre order traverse value = $value \n";
+  echo " pr[$value] ";
 };
 
 $binaryTree->preOrderTraverse($preOrderTraverseCallback);
 
-echo "\n\n";
-var_export($treeSorted);
+//echo "\n\n";
+//var_export($treeSorted);
 
 echo "\n----------------------------------------------------------------------------------\n";
 

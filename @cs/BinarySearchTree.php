@@ -121,7 +121,7 @@ class BinarySearchTree
      */
     private function inOrderTraverseNode($node, $callback) {
         $key = $node->key ?? 'null';
-        echo "\ncurrent key: $key";
+        //echo "\ncurrent key: $key";
         
         if($node !== null) {
             $this->inOrderTraverseNode($node->left, $callback);
@@ -141,7 +141,7 @@ class BinarySearchTree
         $this->preOrderTraverseNode($this->root, $callback);
     }
     
-    private function preOrderTraverseNode(object $node, callable $callback) {
+    private function preOrderTraverseNode(?object $node, callable $callback) {
         if($node !== null) {
             $callback($node->key);
             $this->preOrderTraverseNode($node->left, $callback);
