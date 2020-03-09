@@ -1,12 +1,12 @@
 <?php
-namespace julius;
-
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
  * Date: 8/17/2019
  * Time: 1:17 AM
  */
+
+namespace julius;
 
 
 class BinarySearchTree
