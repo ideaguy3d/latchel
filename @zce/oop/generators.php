@@ -8,15 +8,17 @@
 
 
 //basicGeneratorPractice();
+//keyValueGeneratorPrac();
+//yieldByReferencePractice();
+//pracYieldReturn();
+pracGeneratorDelegation();
 
+
+/**
+ * basic generator prac
+ */
 function basicGeneratorPractice(): void {
-
-    /**
-     * basic generator prac
-     *
-     * @param int $c
-     * @return Generator
-     */
+    // explicitly return a generator
     function genOne(int $c): Generator {
         for ($i = 0; $i < $c; $i++) {
             yield $i;
@@ -30,9 +32,9 @@ function basicGeneratorPractice(): void {
     }
 }
 
-//-- practice "yield $key => $value":
-//keyValueGeneratorPrac();
-$break = 'point';
+/**
+ * practice "yield $key => $value"
+ */
 function keyValueGeneratorPrac(): void {
     // yield by key => value
     function genKeyVal(): Generator {
@@ -47,27 +49,27 @@ function keyValueGeneratorPrac(): void {
     }
 }
 
-//-- yield by reference function &funcName, I don't understand this though,
-//-- I probably need to work the section on returning functions by ref:
-//yieldByReferencePractice();
-
+/**
+ * yield by reference function &funcName, I don't understand this though,
+ * I probably need to work the section on returning functions by ref:
+ */
 function yieldByReferencePractice() {
-    function &pracByRef(): Generator {
-        $x = 10;
+    function &pracByRef($price): Generator {
+        $x = 10 + $price;
+        $x = $x * 0.0825;
         yield $x;
     }
 
-    $y = pracByRef();
+    $y = pracByRef(24.99);
     $y++;
 
     return $y;
 }
 
-//-- practice using return after all yield's:
-//pracYieldReturn();
-$break = 'point';
+/**
+ * practice using return after all yield's:
+ */
 function pracYieldReturn () {
-
     function clientPrint(): string {
         return 'piece printed';
     }
@@ -95,12 +97,11 @@ function pracYieldReturn () {
     }
 
     echo "\n" . $gen->getReturn() . "\n";
-
 }
 
-// practice generator delegation (aka "yield from"):
-pracGeneratorDelegation();
-$break = 'point';
+/**
+ * practice generator delegation (aka "yield from"):
+ */
 function pracGeneratorDelegation () {
     function generator(): Generator {
         $a = [1,2,3];

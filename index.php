@@ -8,7 +8,7 @@ session_start();
 //-----------------------------------------
 //---------- _Application_Start_ ----------
 //-----------------------------------------
-$renderLatchel = false;
+$renderLatchel = true;
 $fac = $_GET['fac'] ?? null;
 
 if (empty($_SESSION['count'])) {

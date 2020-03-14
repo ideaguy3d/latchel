@@ -35,7 +35,6 @@ class HomeController extends Controller
      * @return Closure
      */
     public function index() {
-        $break = 'point';
         return $this->view('template', $this->appName, $this->posts);
     }
 
