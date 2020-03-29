@@ -10,7 +10,27 @@
 //require "basics/bit-ops.php";
 
 /* object cloning practice */
-require "oop/cloning.php";
+//require "oop/cloning.php";
+
+/* array quiz */
+//require "arrays/quiz-arrays.php";
+
+/* oop quiz */
+include "oop/quiz-oop.php";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

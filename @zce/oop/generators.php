@@ -104,8 +104,7 @@ function pracYieldReturn () {
  */
 function pracGeneratorDelegation () {
     function generator(): Generator {
-        $a = [1,2,3];
-        yield from $a;
+        yield from [1,2,3];
         yield from range(4,6);
         yield from sevenAteNine();
     }
