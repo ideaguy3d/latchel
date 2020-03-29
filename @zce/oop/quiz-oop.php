@@ -5,18 +5,24 @@
  * Date: 3/28/2020
  * Time: 6:42 PM
  *
- * 1) B
- * 2) B
- * 3) C
- * 4) C
- * 5) A
- * 6) D
- * 7)
+ * version 2017
+ * 1)  B
+ * 2)  B
+ * 3)  C
+ * 4)  C
+ * 5)  A, ?
+ * 6)  D
+ * 7)  ???
+ * 8)  B, D
+ * 9)  C
+ * 10) C
+ * 11)
+ *
  */
 
 
 // question 2, a fatal error occurs due to Baz->setBar()
-if(($practiceQuestion = false)) {
+if (($practiceQuestion = false)) {
 
     interface someInter
     {
@@ -58,7 +64,7 @@ if(($practiceQuestion = false)) {
 }
 
 // question 3, fatal error due to protected access
-if(($practiceQuestion = false)) {
+if (($practiceQuestion = false)) {
     abstract class BaseClass
     {
         abstract protected function someProtected();
@@ -79,8 +85,8 @@ if(($practiceQuestion = false)) {
     $baseAncestor->someProtected();
 }
 
-// question 5
-if(($practiceQuestion = true)) {
+// question 5, understanding static functions better
+if (($practiceQuestion = false)) {
     // can static functions be abstract?
     abstract class MyStatic
     {
@@ -98,12 +104,53 @@ if(($practiceQuestion = true)) {
     class MyOtherStatic extends MyStaticAncestor
     {
         static public function helloWorld() {
-            return parent::helloWorld() . " and Universe!";
+            return parent::helloWorld() . " and Universe! ";
+        }
+
+        private function goodbyeWorld() {
+            return ' it was nice. ';
+        }
+
+        public function worldProcess() {
+            return self::helloWorld() . ' > ' . $this->goodbyeWorld();
         }
     }
 
-    echo MyOtherStatic::helloWorld();
+    echo "\n\n" . MyOtherStatic::helloWorld() . "\n\n";
+
+    $myOtherStatic = new MyOtherStatic();
+    echo $myOtherStatic->worldProcess();
 }
+
+// question 10, magic methods
+if (($practiceQuestion = false)) {
+    class Magic
+    {
+        public $a = "A";
+        protected $b = array('a' => 'A', 'b' => 'B', 'c' => 'C');
+        protected $c = array(1, 2, 3);
+        protected $dynamic = [];
+
+        public function __get($v) {
+            echo "$v, ";
+            //$this->dynamic [] = $v;
+            return $this->b[$v];
+        }
+
+        public function __set($k, $v) {
+            //echo "set $k => $v, ";
+            $this->$k = $v;
+        }
+    }
+
+    $m = new Magic();
+    echo $m->a . ', ' . $m->b . ', ' . $m->c . "\n";
+    // ->c will not get overwritten
+    $m->c = 'CC';
+    echo "\n" . $m->a . ', ' . $m->b . ', ' . $m->c . "\n";
+}
+
+
 
 
 $debug = 1;
