@@ -8,7 +8,6 @@
 
 namespace julius;
 
-
 class BinarySearchTree
 {
     private $root = null;
