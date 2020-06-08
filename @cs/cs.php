@@ -6,21 +6,29 @@
  * Time: 1:46 AM
  */
 
-require('BinarySearchTree.php');
+require 'BinarySearchTree.php';
 require 'ArrayList.php';
 
 use julius\BinarySearchTree;
+use julius\ArrayList;
 
+$set1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
+$set2 = [5, 4, 3, 2, 1, 0];
+$set3 = [3, 1, 9, 0, 55, 22];
+$set4 = [6,5,4,3,2,1];
 
+sortPractice($set1);
 
+function sortPractice(array $set) {
+    $sort = new ArrayList($set);
+    $sortedArray = $sort->mergeSort();
+    echo "__>> The sorted Array ^_^ \n" . var_export($sortedArray, true) . "\n";
+}
 
-
-function binarySearchTree() {
-    $set1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
-    
+function binarySearchTreePractice($set) {
     $binaryTree = new BinarySearchTree();
     
-    foreach($set1 as $v) {
+    foreach($set as $v) {
         $binaryTree->insert($v);
     }
     
