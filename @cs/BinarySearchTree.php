@@ -1,18 +1,20 @@
 <?php
-declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
  * Date: 8/17/2019
  * Time: 1:17 AM
  */
+declare(strict_types=1);
 
 namespace julius;
+
+use \Closure;
 
 class BinarySearchTree
 {
     private $root = null;
-
+    
     /**
      * Primary Public Function
      *
@@ -40,7 +42,7 @@ class BinarySearchTree
             $this->insertNode($this->root, $node);
         }
     } // END OF: insert()
-
+    
     /**
      * Private Recursive Helper Function
      *
@@ -71,18 +73,19 @@ class BinarySearchTree
             }
         }
     } // END OF: insertNode()
-
+    
     /**
      * @return mixed root - can be null or a Node
      */
     public function getRoot() {
         return $this->root;
     }
-
+    
     /**
      * Primary Public function
      *
      * @param $key
+     *
      * @return bool
      */
     public function search($key) {
@@ -103,7 +106,7 @@ class BinarySearchTree
             return true;
         }
     }
-
+    
     /**
      * Primary Public Function
      *
@@ -112,7 +115,7 @@ class BinarySearchTree
     public function inOrderTraverse(\Closure $callback) {
         $this->inOrderTraverseNode($this->root, $callback);
     }
-
+    
     /**
      * Private Recursive Helper Function
      *
@@ -131,7 +134,7 @@ class BinarySearchTree
             $recurse2 = 'point2';
         }
     }
-
+    
     /**
      * Primary Public Function
      *
@@ -141,7 +144,7 @@ class BinarySearchTree
         $this->preOrderTraverseNode($this->root, $callback);
     }
     
-    private function preOrderTraverseNode(?object $node, callable $callback) {
+    private function preOrderTraverseNode(?object $node, callable $callback): void {
         if($node !== null) {
             $callback($node->key);
             $this->preOrderTraverseNode($node->left, $callback);
@@ -149,12 +152,16 @@ class BinarySearchTree
         }
     }
     
-    public function postOrderTraverse(\Closure $callback) {
-    
+    public function postOrderTraverse(Closure $callback): void {
+        $this->postOrderTraverseNode($this->root, $callback);
     }
     
-    private function postOrderTraverseNode($node, $callback) {
-    
+    private function postOrderTraverseNode(?object $node, Closure $callback): void {
+        if(null !== $node) {
+            $this->postOrderTraverseNode($node->left, $callback);
+            $this->postOrderTraverseNode($node->right, $callback);
+            $callback($node->key);
+        }
     }
     
     /**

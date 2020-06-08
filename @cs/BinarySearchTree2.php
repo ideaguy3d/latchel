@@ -11,5 +11,15 @@ namespace julius;
 
 class BinarySearchTree2
 {
-
+    /*
+    min
+    max
+    insert
+    remove
+    search
+    getRoot
+    inOrderTraverse
+    preOrderTraverse
+    postOrderTraverse
+    */
 }

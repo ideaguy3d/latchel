@@ -8,7 +8,9 @@
 
 require 'BinarySearchTree.php';
 require 'ArrayList.php';
-require 'sort2.php';
+
+// lazy way to invoke code from sort2.php
+//require 'sort2.php';
 
 use julius\BinarySearchTree;
 use julius\ArrayList;
@@ -16,9 +18,9 @@ use julius\ArrayList;
 $set1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
 $set2 = [5, 4, 3, 2, 1, 0];
 $set3 = [3, 1, 9, 0, 55, 22];
-$set4 = [6,5,4,3,2,1];
+$set4 = [6, 5, 4, 3, 2, 1];
 
-//binarySearchTreePractice($set4)
+binarySearchTreePractice($set1);
 //sortPractice($set1);
 
 function sortPractice(array $set) {
@@ -51,12 +53,19 @@ function binarySearchTreePractice($set) {
     };
     
     $binaryTree->preOrderTraverse($preOrderTraverseCallback);
-
-//echo "\n\n";
-//var_export($treeSorted);
+    
+    //echo "\n\n";
+    //var_export($treeSorted, true);
     
     echo "\n----------------------------------------------------------------------------------\n";
     
+    $postOrderTraverseCallback = function($node) {
+        echo " post[$node] ";
+    };
+    
+    $binaryTree->postOrderTraverse($postOrderTraverseCallback);
+    
+    echo "\n----------------------------------------------------------------------------------\n";
 }
 
 
