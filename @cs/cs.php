@@ -8,6 +8,7 @@
 
 require 'BinarySearchTree.php';
 require 'ArrayList.php';
+require 'sort2.php';
 
 use julius\BinarySearchTree;
 use julius\ArrayList;
@@ -17,7 +18,8 @@ $set2 = [5, 4, 3, 2, 1, 0];
 $set3 = [3, 1, 9, 0, 55, 22];
 $set4 = [6,5,4,3,2,1];
 
-sortPractice($set1);
+//binarySearchTreePractice($set4)
+//sortPractice($set1);
 
 function sortPractice(array $set) {
     $sort = new ArrayList($set);
