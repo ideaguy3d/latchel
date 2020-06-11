@@ -1,11 +1,11 @@
 <?php
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
  * Date: 8/17/2019
  * Time: 1:17 AM
  */
-declare(strict_types=1);
 
 namespace julius;
 

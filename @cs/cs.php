@@ -9,8 +9,9 @@
 require 'BinarySearchTree.php';
 require 'ArrayList.php';
 
-// lazy way to invoke code from sort2.php
+// invoke other php code real quick
 //require 'sort2.php';
+require 'mergeSort3.php';
 
 use julius\BinarySearchTree;
 use julius\ArrayList;
@@ -20,7 +21,7 @@ $set2 = [5, 4, 3, 2, 1, 0];
 $set3 = [3, 1, 9, 0, 55, 22];
 $set4 = [6, 5, 4, 3, 2, 1];
 
-binarySearchTreePractice($set1);
+//binarySearchTreePractice($set1);
 //sortPractice($set1);
 
 function sortPractice(array $set) {
