@@ -7,14 +7,17 @@
  */
 
 require 'BinarySearchTree.php';
-require 'ArrayList.php';
+require 'ArraySort.php';
 
-// invoke other php code real quick
-//require 'sort2.php';
-require 'mergeSort3.php';
+/*
+    -- invoke other php code real quick --
+*/
+//require 'mergeSort2.php';
+//require 'mergeSort3.php';
+require 'mergeSort4.php';
 
 use julius\BinarySearchTree;
-use julius\ArrayList;
+use julius\ArraySort;
 
 $set1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6];
 $set2 = [5, 4, 3, 2, 1, 0];
@@ -25,7 +28,7 @@ $set4 = [6, 5, 4, 3, 2, 1];
 //sortPractice($set1);
 
 function sortPractice(array $set) {
-    $sort = new ArrayList($set);
+    $sort = new ArraySort($set);
     $sortedArray = $sort->mergeSort();
     echo "__>> The sorted Array ^_^ \n" . var_export($sortedArray, true) . "\n";
 }

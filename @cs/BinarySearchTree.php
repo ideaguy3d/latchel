@@ -138,7 +138,7 @@ class BinarySearchTree
     /**
      * Primary Public Function
      *
-     * @param \Closure $callback
+     * @param Closure $callback
      */
     public function preOrderTraverse(\Closure $callback) {
         $this->preOrderTraverseNode($this->root, $callback);

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace julius;
 
-class ArrayList
+class ArraySort
 {
     private array $array = [];
     
