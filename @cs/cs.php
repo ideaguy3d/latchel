@@ -13,11 +13,11 @@ require 'sort/ArraySort.php';
 use julius\BinarySearchTree;
 use julius\ArraySort;
 
-$set1 = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 15, 6];
+$set1 = [10000001,11, 7,99, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 150,25, 15, 6];
 $set2 = [5, 4, 3, 2, 1, 0];
 $set3 = [3, 1, 9, 0, 55, 22];
 $set4 = [6, 5, 4, 3, 2, 1];
-$mergeSort = require 'sort/merge/mergeSort5.php';
+$mergeSort = require 'sort/merge/mergeSort6.php';
 
 // test sort
 echo "\n\nSorted set = \n" . var_export($mergeSort($set1), true) . "\n//\n";
