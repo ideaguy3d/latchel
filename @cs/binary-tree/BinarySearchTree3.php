@@ -11,33 +11,44 @@ namespace julius;
 
 class BinarySearchTree3
 {
+    /**
+     * root node
+     */
     private object $root;
     
-    public function postOrderTraverse($key, $visitor) {
-        $this->postRecursion($this->root, $key, $visitor);
+    public function postOrderTraverse(Callable $visitor): void {
+        $this->postRecursive($this->root, $visitor);
     }
     
-    public function postRecursion($node, $key, $visitor) {
-        if(null !== $node->key) {
-            $this->postRecursion($node->left, $node->key, $visitor);
-            $this->postRecursion($node->right, $node->key, $visitor);
-            $visitor($key);
+    private function postRecursive(object $node, Callable $visitor): void {
+        if(null !== $node) {
+                $this->postRecursive($node->left, $visitor);
+                $this->postRecursive($node->right, $visitor);
+                $visitor($node->key);
         }
     }
     
-    public function preOrderTraverse() {
-    
+    public function preOrderTraverse(Callable $visitor): void {
+        $this->preRecursion($this->root, $visitor);
     }
     
-    private function preRecursion() {
-    
+    private function preRecursion(object $node, Callable $visitor): void {
+        if(null !== $node) {
+            $visitor($node->key);
+            $this->preRecursion($node->left, $visitor);
+            $this->preRecursion($node->right, $visitor);
+        }
     }
     
-    public function inOrderTraverse() {
-    
+    public function inOrderTraverse(Callable $visitor): void {
+        $this->inRecursion($this->root, $visitor);
     }
     
-    public function inRecursion() {
-    
+    public function inRecursion(object $node, Callable $visitor) {
+        if(null !== $node) {
+            $this->inRecursion($node->left, $visitor);
+            $visitor($node->key);
+            $this->inRecursion($node->right, $visitor);
+        }
     }
 }

@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-require 'binary-tree/BinarySearchTree.php';
+require 'binary-tree/BinarySearchTree3.php';
 require 'sort/ArraySort.php';
 
 use julius\BinarySearchTree;
@@ -20,7 +20,7 @@ $set4 = [6, 5, 4, 3, 2, 1];
 $mergeSort = require 'sort/merge/mergeSort6.php';
 
 // test sort
-echo "\n\nSorted set = \n" . var_export($mergeSort($set1), true) . "\n//\n";
+//echo "\n\nSorted set = \n" . var_export($mergeSort($set1), true) . "\n//\n";
 
 function sortPractice(array $set) {
     $sort = new ArraySort($set);
@@ -29,7 +29,7 @@ function sortPractice(array $set) {
 }
 
 function binarySearchTreePractice($set) {
-    $binaryTree = new BinarySearchTree();
+    $binaryTree = new BinarySearchTree3();
     
     foreach($set as $v) {
         $binaryTree->insert($v);
