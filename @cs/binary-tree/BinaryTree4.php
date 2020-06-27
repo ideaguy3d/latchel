@@ -41,7 +41,7 @@ class BinaryTree4
         if(null !== $node) {
             $this->postRecursion($node->left, $visitor);
             $this->postRecursion($node->right, $visitor);
-            $visitor($node->key); 
+            $visitor($node->key);
         }
     }
 }
