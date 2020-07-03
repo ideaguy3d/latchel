@@ -33,7 +33,7 @@ function merge(array $left, array $right): array {
         $sorted [] = $right[$rIndex++];
     }
     
-    return $sorted; 
+    return $sorted;
 }
 
 
