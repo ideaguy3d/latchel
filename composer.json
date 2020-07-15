@@ -21,8 +21,9 @@
 		}
 	},
 	"require": {
-		"ext-finfo": "*"
-	},
+		"ext-finfo": "*",
+        "ext-json": "*"
+    },
 	"config": {
 		"process-timeout": 0
 	},

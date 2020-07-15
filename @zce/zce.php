@@ -7,7 +7,10 @@
  */
 
 /* bit operator practice */
-require "basics/bit-ops.php";
+//require "basics/bit-ops.php";
+
+/* various edge case operator */
+require "basics/basics.php";
 
 /* object cloning practice */
 //require "oop/cloning.php";
