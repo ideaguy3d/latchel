@@ -6,7 +6,7 @@
  * Time: 6:00 PM
  */
 
-// float to int prac
+// float to int practice
 $x1 = (int)((0.1 + 0.7) * 10.0); // 0.7
 $y1 = (int)((0.1 + 0.5) * 10.0); //0.6
 

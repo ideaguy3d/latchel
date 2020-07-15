@@ -7,7 +7,7 @@
  */
 
 /* bit operator practice */
-//require "basics/bit-ops.php";
+require "basics/bit-ops.php";
 
 /* object cloning practice */
 //require "oop/cloning.php";
@@ -16,7 +16,7 @@
 //require "arrays/quiz-arrays.php";
 
 /* oop quiz */
-include "oop/quiz-oop.php";
+//include "oop/quiz-oop.php";
 
 
 
