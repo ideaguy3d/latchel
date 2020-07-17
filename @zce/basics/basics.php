@@ -52,7 +52,7 @@ function whichRate(int $v): string {
 //__ array operators
 echo "\n---- array unions: \n";
 $a1 = ['product' => 'First class', 'price' => 0.55];
-$a2 = ['product'=> 'Standard class', 'paper_type' => '60# white'];
+$a2 = ['product' => 'Standard class', 'paper_type' => '60# white'];
 echo var_export($a1 + $a2, true); // ['']
 echo var_export($a2 + $a1, true);
 
@@ -63,7 +63,9 @@ echo json_encode($a1 == $a2), "\n"; // true
 echo json_encode($a1 === $a2), "\n"; // false, despite $a1[1] and $a2[1] equaling 'hi'
 
 // classes occupy their own memory space so they'll evaluate to false as well
-$o1 = new class(){public string $prop = 'hi world';};
+$o1 = new class() {
+    public string $prop = 'hi world';
+};
 $o2 = clone $o1;
 $a1 = [$o1,];
 $a2 = [$o2];
@@ -76,19 +78,51 @@ $v1 = 1;
 $v2 = 2;
 echo "\n---- xor prac: \n";
 if($v1 === 1 ^ $v2 === 2) {
-    echo "\n both are true";
+    echo "\n This will NOT get echoed";
 }
 else {
-    echo "\n but there are some cases this is not wanted\n";
+    echo "\n 2, This will get echoed \n";
 }
 if($v1 === 1 ^ $v2 === 1) {
-    echo "\n This will get echoed";
+    echo "\n 1, This will get echoed";
 }
 else {
     echo "\n but not this";
 }
 
+//__ ternary short form
+$m = ' hello ';
+$b = false;
+echo "\n---- ternary: \n";
+echo 'Well ', $m ?: ' world'; // Well Hello
+echo "\n";
+echo 'Well ', $b ?: ' world'; // Well World
 
+echo "\n\n";
+
+//__ from the "Namespaces and dynamic language features" php manual section
+// this is really cool, we can use variables to use a class, function, or constant
+class ClassOne
+{
+    public function __construct() {
+        echo '\n_> julius: ' . __METHOD__ . PHP_EOL;
+    }
+}
+
+function FuncOne() {
+    echo '\n_> julius: ' . __METHOD__ . PHP_EOL;
+}
+const oneConst = 'first constant';
+$a = 'ClassOne';
+$b = 'FuncOne';
+$c = 'oneConst';
+// dynamically using a class, function, and constant from a variable
+$foo = new $a;
+$b();
+echo constant($c);
+echo PHP_EOL . ClassOne::class;
+
+echo "\n\n--------\n\n";
 
 
 $debug = 1;
