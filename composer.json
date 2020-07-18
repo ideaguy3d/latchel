@@ -22,7 +22,8 @@
 	},
 	"require": {
 		"ext-finfo": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-pdo": "*"
     },
 	"config": {
 		"process-timeout": 0
