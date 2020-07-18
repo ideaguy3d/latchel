@@ -10,7 +10,7 @@
 //require "basics/bit-ops.php";
 
 /* various edge case operator */
-require "basics/basics.php";
+//require "basics/basics.php";
 
 /* object cloning practice */
 //require "oop/cloning.php";
@@ -20,6 +20,7 @@ require "basics/basics.php";
 
 /* oop quiz */
 //include "oop/quiz-oop.php";
+include "basics/quiz2.php";
 
 
 
