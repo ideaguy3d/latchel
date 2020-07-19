@@ -6,7 +6,7 @@ $j = $_GET['j'] ?? null;
 
 if($j) {
     /*
-        with PHP sending the text\html mime type json xss attacks are more likely
+        PHP sending the text\html mime type json xss attacks are more likely
         so change to header('Content-type: application/json');
     
         // potential json xss attack

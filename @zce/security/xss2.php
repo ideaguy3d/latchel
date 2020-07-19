@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-header('Content-type: application/json');
+//header('Content-type: application/json');
 
 $pdo = new PDO(
     'mysql:host=127.0.0.1;dbname=lara1', 'root', '',
@@ -27,23 +27,19 @@ $debug = 1;
 $j = $_GET['j'] ?? null;
 if($j) {
     /*
-        with PHP sending the text\html mime type
-        change to header('Content-type: application/json');
-    
-        // probably not susceptible to xss
-        echo json_encode($j,
-            JSON_HEX_TAG
-            | JSON_HEX_APOS
-            | JSON_HEX_QUOT
-            | JSON_HEX_AMP
-        );
+            PHP sending the text\html mime type json xss attacks are more likely
+            so change to header('Content-type: application/json');
+        
+            // probably not susceptible to xss
+            echo json_encode($j,
+                JSON_HEX_TAG
+                | JSON_HEX_APOS
+                | JSON_HEX_QUOT
+                | JSON_HEX_AMP
+            );
     */
    
     echo json_encode($j); // very susceptible to xss
-    
-    /*
-
-    */
 }
 
 /*
