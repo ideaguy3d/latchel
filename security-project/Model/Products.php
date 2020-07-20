@@ -27,7 +27,7 @@ class Products
     public function getProducts($offset = 0) {
         $dbh = $this->getDbh();
         $sql = 'SELECT * FROM `products` ORDER BY `title` LIMIT ' . $this->productsPerPage . ' OFFSET ' . $offset;
-        $stmt = mysqli_query($sql);
+        $stmt = mysqli_query($this->dbh_internal, $sql);
         $content = [];
         while($row = mysqli_fetch_assoc($stmt)) {
             $content[] = $row;
@@ -42,7 +42,7 @@ class Products
     public function getAllProducts() {
         $dbh = $this->getDbh();
         $sql = 'SELECT * FROM `products`';
-        $stmt = mysqli_query($sql);
+        $stmt = mysqli_query($this->dbh_internal, $sql);
         $content = [];
         while($row = mysqli_fetch_assoc($stmt)) {
             $content[] = $row;
