@@ -40,6 +40,7 @@ if (isset($_GET['keyword'])) {
 }
 
 ?>
+
 <div class="content">
 
 <br/>
@@ -47,6 +48,7 @@ if (isset($_GET['keyword'])) {
 	<h2>Our Members</h2>
 	<br/>
 		<form name="search" method="get" action="?page=members" id="search">
+            <!-- Susceptible to _SQL_INJECTION: "A%'UNION SELECT password, dob, balance, phone, name from members;--" -->
 			<input type="text" value="keywords" name="keyword" class="s0" />
 			<input type="submit" name="search" value="Search Members" class="button marL10" />
 			<input type="hidden" name="page" value="members" />
@@ -65,7 +67,8 @@ if (isset($_GET['keyword'])) {
 			<td><?php echo $one[0]; ?></td>
 			<td>
 				<?php if (isset($one[1])) : ?>
-					<img src="<?php echo $one[1]; ?>" width="10%" height="10%" />
+                    <!-- Susceptible to _XSS: "http://localhost:60/xss.php?info=jtest" -->
+					<img src="<?php echo $one[1]; ?>" width="10%" height="10%" class="x-vulnerable"/>
 				<?php else : ?>
 					<img src="images/m.gif" />
 				<?php endif; ?>

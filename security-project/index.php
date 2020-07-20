@@ -42,8 +42,10 @@ if (isset($_GET['page'])) {
 	$page = 'home';
 }
 ?>
+
 <!DOCTYPE HTML>
-<html>
+
+<html lang="en">
 <head>
 <!-- // *** Need to escape user supplied info (i.e. $page)  -->
 <title><?php echo $view->companyName; ?> | <?php echo ucfirst($page); ?></title>
@@ -103,7 +105,10 @@ if (isset($_GET['page'])) {
 		<br class="clear"/>
 	</div> <!-- header -->
 
-	<!-- // *** including file from user supplied info ($page) makes code injection attack possible -->
+	<!-- //__ *** including file from user supplied info ($page) makes
+	    code injection attack possible if attacker knows the location of uploaded file
+	    possible attack: $page = '../pathTo/uploaded/file.php'
+	-->
 	<?php include "./View/$page.php"; ?>
 
 	</div><!-- maincontent -->
