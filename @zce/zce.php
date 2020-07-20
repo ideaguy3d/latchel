@@ -20,7 +20,10 @@
 
 /* oop quiz */
 //include "oop/quiz-oop.php";
-include "basics/quiz2.php";
+//include "basics/quiz2.php";
+
+/* security */
+include 'security/filter-input1.php';
 
 
 
