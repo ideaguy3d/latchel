@@ -16,7 +16,7 @@ $stateLookupQuery = 'select * from us_states where state_name = :state limit 1;'
 $stateLookupStatement = $db->prepare($stateLookupQuery);
 
 $output = '<h1>recursive loop 2</h1> <table border="1">' . PHP_EOL;
-$prospects = $db->query('select * from prospects limit 19;');
+$prospects = $db->query('select * from prospects limit 22;');
 $r1 = $prospects->fetch();
 
 if(false) prospectsRecursiveLoop($r1);
