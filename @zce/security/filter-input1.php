@@ -51,7 +51,7 @@ function recurseCities(array $cities) {
         echo '<br /><i>Must be no more than ' . $maxLenCityName . ' letters in length!</i></li>' . PHP_EOL;
     }
     else if(strlen($city) < $minLenCityName) {
-        echo '<li><b style="color: red;">INVALID</b>: City Name Too Short! [' . substr($city, 0, 20) . ']' . PHP_EOL;
+        echo '<li><b style="color: #ff0000;">INVALID</b>: City Name Too Short! [' . substr($city, 0, 20) . ']' . PHP_EOL;
         echo '<br /><i>Must be at at least ' . $minLenCityName . ' letter(s) in length!</i></li>' . PHP_EOL;
     }
     else {
@@ -61,6 +61,52 @@ function recurseCities(array $cities) {
     if(!empty($cities)) recurseCities($cities);
 }
 
+
+$testData = [
+    12345,
+    12345.678,
+    'Non Numeric',
+    '<script>alert("XSS Attack");</script>',
+    'Test string with no tags',
+    'Test <b>string</b> with <i>harmless</i> tags',
+    'Test <b>string</b> with bogus image <img src="http://verybadwebsite/badcode.php" />',
+    'Test string with javascript <script>alert("XSS Attack");</script>',
+];
+
+$output = '<table border=1><tr>';
+$output .= '<th>Escaped Original</th>'
+    . '<th>(int)$data</th>'
+    . '<th>(float)$data</th>'
+    . '<th>strip_tags($data)</th>'
+    . '<th>strip_tags($data, "&lt;b&gt;&lt;i&gt;")</th>'
+    . '</tr>' . PHP_EOL;
+
+testDataRecursion($testData);
+
+function testDataRecursion(array $testData): void {
+    global $output;
+    $item = array_shift($testData);
+    
+    $notWhitelisted = strip_tags($item);
+    $whitelisted = strip_tags($item, '<b><i>');
+    
+    $output .= '<tr>'
+        . '<td>' . htmlspecialchars($item) . '</td>'
+        // security via type conversion
+        . '<td>' . (int)$item . '</td>'
+        . '<td>' . (float)$item . '</td>'
+        // security via filtering
+        . "<td>$notWhitelisted</td>"
+        . "<td>$whitelisted</td>"
+        . '</tr>' . PHP_EOL;
+    
+    if(!empty($testData)) testDataRecursion($testData);
+}
+
+echo "<br><hr>$output";
+echo '</table><hr><br>' . PHP_EOL;
+
+// end of PHP embed code
 ?>
 
 <!DOCTYPE HTML>
