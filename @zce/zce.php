@@ -23,7 +23,8 @@
 //include "basics/quiz2.php";
 
 /* security */
-include 'security/filter-input2.php';
+//include 'security/filter2.php';
+include 'security/valid1.php';
 
 
 
