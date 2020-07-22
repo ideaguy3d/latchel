@@ -7,3 +7,4 @@ dist
 **/**/**/**/**/*.csv
 images
 security-project/PHPMailer
+*.csv
