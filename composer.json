@@ -25,7 +25,9 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-mysqli": "*",
-        "ext-ctype": "*"
+        "ext-ctype": "*",
+        "ext-dom": "*",
+        "ext-xsl": "*"
     },
 	"config": {
 		"process-timeout": 0

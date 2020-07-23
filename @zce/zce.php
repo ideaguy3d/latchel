@@ -6,26 +6,24 @@
  * Time: 10:17 PM
  */
 
-/* bit operator practice */
+/* basics */
 //require "basics/bit-ops.php";
-
-/* various edge case operator */
 //require "basics/basics.php";
 
-/* object cloning practice */
-//require "oop/cloning.php";
-
-/* array quiz */
+/* arrays */
 //require "arrays/quiz-arrays.php";
 
-/* oop quiz */
+/* oop */
+//require "oop/cloning.php";
 //include "oop/quiz-oop.php";
 //include "basics/quiz2.php";
 
 /* security */
 //include 'security/filter2.php';
-include 'security/valid1.php';
+//include 'security/valid1.php';
 
+/* data formats */
+include 'data-formats/xml1.php';
 
 
 
