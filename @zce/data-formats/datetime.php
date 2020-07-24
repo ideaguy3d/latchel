@@ -13,6 +13,17 @@ $dates = [
 ];
 
 try {
+    // to avoid confusion between Aug 9th 2020 between "9-8-20" & "8-9-20"
+    $date = '8-9-20';
+    // month = Aug
+    $dateTime = DateTime::createFromFormat('m-d-Y', $date);
+    echo '_> ' . $dateTime->format(DateTime::COOKIE);
+    // month = Sep
+    $dateTime = DateTime::createFromFormat('d-m-Y', $date);
+    echo "\n_> " . $dateTime->format(DateTime::COOKIE);
+    
+    echo "\n\n";
+    
     //jDatesIteration($dates);
     jDatesRecursion($dates);
 }
