@@ -37,7 +37,6 @@ try {
         3_> Monday, 27-Sep-2021 18:08:13 CEST
     */
     
-    
     echo "\n\n";
     
     // to avoid confusion between Aug 9th 2020 between "9-8-20" & "8-9-20"
