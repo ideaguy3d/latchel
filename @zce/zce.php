@@ -23,7 +23,7 @@
 //include 'security/valid1.php';
 
 /* data formats */
-include 'data-formats/xml2.php';
+include 'data-formats/datetime.php';
 
 
 
