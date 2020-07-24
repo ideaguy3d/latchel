@@ -1,0 +1,26 @@
+<phpunit backupGlobals="false" backupStaticAttributes="false" bootstrap="vendor/autoload.php" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+
+        <testsuite name="Api">
+            <directory suffix="Test.php">./tests/Api</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing"></env>
+        <env name="CACHE_DRIVER" value="array"></env>
+        <env name="MAIL_DRIVER" value="array"></env>
+        <env name="QUEUE_CONNECTION" value="sync"></env>
+        <env name="SESSION_DRIVER" value="array"></env>
+        <env name="DB_CONNECTION" value="sqlite"></env>
+        <env name="DB_DATABASE" value=":memory:"></env>
+        <env name="APP_DEBUG" value="false"></env>
+    </php>
+</phpunit>
