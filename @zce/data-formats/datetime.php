@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+echo "\n\r";
 $dates = [
     'Next monday',
     'Yesterday',
@@ -12,7 +13,8 @@ $dates = [
 ];
 
 try {
-    jDatesIteration($dates);
+    //jDatesIteration($dates);
+    jDatesRecursion($dates);
 }
 catch(\Throwable $e) {
     echo $e->getMessage();
@@ -29,3 +31,20 @@ function jDatesIteration(array $dates): void {
         echo $dateTime->format(DateTime::COOKIE) . PHP_EOL;
     }
 }
+
+/**
+ * @param array $dates
+ *
+ * @throws Exception
+ */
+function jDatesRecursion (array $dates): void {
+    if(empty($dates)) return;
+    
+    $date = $dates[0];
+    $dateTime = new DateTime($date);
+    echo $dateTime->format(DateTime::COOKIE) . PHP_EOL;
+    
+    jDatesRecursion(array_slice($dates, 1));
+}
+
+// end of PHP file
