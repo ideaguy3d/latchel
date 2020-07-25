@@ -74,6 +74,17 @@ if(isset($_POST['data'])) {
         return null;
     };
     
+    $validateAddressComponents = function($key, $limit) use (&$error, &$valid, $data) {
+        if(!ctype_alnum(str_replace([' ', ',', '.'], '', $data[$key]))) {
+            $error[$key] = "$key can only have letters, numbers, commas, and periods";
+            $valid = false;
+        }
+        else if (strlen($data[$key]) > $limit) {
+            $error[$key] = "$key can only be $limit characters long";
+            $valid = false;
+        }
+    };
+    
     // *** filtering: need to remove unwanted tags from incoming data
     if(isset($data['dobyear']) && isset($data['dobmonth']) && isset($data['dobday'])) {
         try {
@@ -126,10 +137,24 @@ if(isset($_POST['data'])) {
         $valid = false;
     }
     
-    //-- first & last
+    //-- first & last:
     $validateName('firstname');
     $validateName('lastname');
     
+    //-- photo:
+    if(!preg_match('/^.+\.(jpg|png|gif)$/', $data['photo'])) {
+        $error['photo'] = 'Photo must be jpg, png, or gif';
+        $valid = false;
+    }
+    else if(strlen($data['photo']) > 128) {
+        $error['photo'] = 'Photo URL can only be 128 characters long';
+        $valid = false;
+    }
+    
+    // address, city, state:
+    $validateAddressComponents('address', 255);
+    $validateAddressComponents('city', 64);
+    $validateAddressComponents('stateProv', 32); 
     
     // add data and retrieve last insert ID
     $newId = $member->add($data);
