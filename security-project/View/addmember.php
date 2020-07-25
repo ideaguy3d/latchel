@@ -49,18 +49,31 @@ $selectedCountry = $_POST['data']['country'] ?? null;
 $countrySelect = '<select name="julius[country]">' . PHP_EOL;
 $countryValidate = [];
 while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-    $countryValidate [] =  $row['iso2'];
+    $countryValidate [] = $row['iso2'];
     $countrySelect .= "<option value='{$row['iso2']}'";
     $countrySelect .= ($selectedCountry == $row['iso2']) ? 'selected' : '';
-    $countrySelect.= ">{$row['name']}</option>" . PHP_EOL;
+    $countrySelect .= ">{$row['name']}</option>" . PHP_EOL;
 }
 $countrySelect .= '</select>' . PHP_EOL;
-
-$debug = 1;
 
 if(isset($_POST['data'])) {
     $data = $_POST['data'];
     $valid = true;
+    
+    //-- first and last:
+    $validateName = function($key) use (&$error, &$valid, $data) {
+        $name = $data[$key];
+        if(!preg_match('/^[a-z,. ]+$/i', $name)) {
+            $error[$key] = 'Only letters, commas, and periods are allowed';
+            $valid = false;
+        }
+        else if(strlen($name) > 128) {
+            $error[$key] = 'Only allowed to have 128 characters';
+            $valid = false;
+        }
+        return null;
+    };
+    
     // *** filtering: need to remove unwanted tags from incoming data
     if(isset($data['dobyear']) && isset($data['dobmonth']) && isset($data['dobday'])) {
         try {
@@ -93,7 +106,7 @@ if(isset($_POST['data'])) {
         $valid = false;
     }
     
-    // filter input with strip_tags()
+    // filter all input with strip_tags()
     foreach($data as $key => $value) {
         $date[$key] = trim(strip_tags($value));
     }
@@ -105,14 +118,42 @@ if(isset($_POST['data'])) {
         if (!preg_match('/^[a-z][a-z0-9._-]+@(\w+\.)+[a-z]{2,6}$/i', $data['email'])) {
             $error['email'] = '<b class="error">Invalid email address</b>';
         }
-     */
+    */
+    
+    //-- email:
+    if(filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        $error['email'] = 'Invalid email entered';
+        $valid = false;
+    }
+    
+    $validateName('firstname');
+    $validateName('lastname');
+    
+    
+    if(!preg_match('/^[a-z,. ]+$/i', $data['firstname'])) {
+        $error['firstname'] = 'Only letters, commas, and periods are allowed';
+        $valid = false;
+    }
+    else if(strlen($data['firstname']) > 128) {
+        $error['firstname'] = 'Only allowed to have 128 characters';
+        $valid = false;
+    }
+    
+    if(!preg_match('/^[a-z,. ]+$/i', $data['lastname'])) {
+        $error['firstname'] = 'Only letters, commas, and periods are allowed';
+        $valid = false;
+    }
+    else if(strlen($data['firstname']) > 128) {
+        $error['firstname'] = 'Only allowed to have 128 characters';
+        $valid = false;
+    }
     
     // add data and retrieve last insert ID
     $newId = $member->add($data);
     
     // *** validation: check to see if form data is valid before sending email
     // send email confirmation
-    $member->confirm($newId, $data);
+    //$member->confirm($newId, $data);
     
     // *** redirect to the confirmation page if valid or if 1st time
 }
