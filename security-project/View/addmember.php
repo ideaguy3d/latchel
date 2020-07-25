@@ -46,7 +46,7 @@ $member = new Members();
 $pdo = $member->getPdo();
 $statement = $pdo->query('select * from iso_country_codes');
 $selectedCountry = $_POST['data']['country'] ?? null;
-$countrySelect = '<select name="julius[country]">' . PHP_EOL;
+$countrySelect = '<select name="data[country]">' . PHP_EOL;
 $countryValidate = [];
 while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
     $countryValidate [] = $row['iso2'];
@@ -154,7 +154,30 @@ if(isset($_POST['data'])) {
     // address, city, state:
     $validateAddressComponents('address', 255);
     $validateAddressComponents('city', 64);
-    $validateAddressComponents('stateProv', 32); 
+    $validateAddressComponents('stateProv', 32);
+    
+    // country is using the result set from the db
+    if(isset($data['count'])) {
+        $countryKey = array_search($data['country'], $countryValidate, true);
+        if(false === $countryKey) {
+            $error['country'] = 'Country not found';
+            $valid = false;
+        }
+        else {
+            // setting country to a value from the db
+            $data['country'] = $countryValidate[$countryKey];
+        }
+    }
+    
+    $postCode = strtoupper($data['postcode']);
+    if(!ctype_alnum(str_replace([' ', '-'], '', $postCode))) {
+        $error['postcode'] = 'Only letters, numbers, and dashes are allowed';
+        $valid = false;
+    }
+    else if(strlen($postCode) > 10) {
+        $error['postcode'] = 'Postcode can only be 10 digits long';
+        $valid = false;
+    }
     
     // add data and retrieve last insert ID
     $newId = $member->add($data);
