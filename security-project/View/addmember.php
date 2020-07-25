@@ -20,7 +20,7 @@ $data = [
     'dobday' => 0,
     'telephone' => 'telephone',
     'password' => 'password',
-    'photo' => 'URL of photo',
+    'photo' => 'http://localhost/img/hack.png',
 ];
 
 // *** this is not being used, but needs to be implemented as part of the validation scheme
@@ -45,34 +45,51 @@ $member = new Members();
 // implementing country code validation
 $pdo = $member->getPdo();
 $statement = $pdo->query('select * from iso_country_codes');
-$selectedCountry = $_POST['data']['country'] ?? 'USA';
+$selectedCountry = $_POST['julius']['country'] ?? null;
+$countrySelect = '<select name="julius[country]">' . PHP_EOL;
+$countryValidate = [];
+while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+    $countryValidate [] =  $row['iso2'];
+    $countrySelect .= "<option value='{$row['iso2']}'";
+    $countrySelect .= ($selectedCountry == $row['iso2']) ? 'selected' : '';
+    $countrySelect.= ">{$row['name']}</option>" . PHP_EOL;
+}
+$countrySelect .= '</select>' . PHP_EOL;
+
+$debug = 1;
 
 if(isset($_POST['data'])) {
     $data = $_POST['data'];
+    $valid = true;
     // *** filtering: need to remove unwanted tags from incoming data
     if(isset($data['dobyear']) && isset($data['dobmonth']) && isset($data['dobday'])) {
         try {
+            // sprintf() filters user input
             $bdateString = sprintf('%4d-%02d-%02d', $data['dobyear'], $data['dobmonth'], $data['dobday']);
             $bdate = new DateTime($bdateString);
             $today = new DateTime();
             $interval21 = new DateInterval('P21Y');
             $bdate21 = $today->sub($interval21);
-            
-            // *** validation: need to check to see if DOB is > 21 years old
             if($bdate > $bdate21) {
-                // *** validation: add message to $error['dob'];
+                $error['dob'] = 'Must be over 21 years old';
+                $valid = false;
             }
+            
+            // final dob doesn't directly use user input
             $data['dob'] = $bdate->format('Y-m-d H:i:s');
         }
         catch(Exception $e) {
             // *** validation: need to add info to $error['dob']
             // *** security: consider logging the error message rather than displaying it
-            echo $e->getMessage();
+            //echo $e->getMessage();
+            error_log($e->getMessage(), 0);
+            header('Location: /');
+            exit;
         }
-        
     }
     else {
         // *** validation: need to add info to $error['dob']
+        $error['dob'] = 'Unable to add dob info';
     }
     
     // *** security: all incoming data should be filtered and/or validated!
@@ -84,14 +101,13 @@ if(isset($_POST['data'])) {
         }
      */
     
-    // *** validation: check to see if form data is valid before adding to database
-    require_once('./Model/Members.php');
-    $member = new Members();
     // add data and retrieve last insert ID
     $newId = $member->add($data);
+    
     // *** validation: check to see if form data is valid before sending email
     // send email confirmation
     $member->confirm($newId, $data);
+    
     // *** redirect to the confirmation page if valid or if 1st time
 }
 ?>
@@ -222,7 +238,7 @@ if(isset($_POST['data'])) {
             <p class="app-input-country">
                 <!-- // *** validation: implement a database lookup -->
                 <label>Country: </label>
-                <input type="text" name="data[country]" value="<?php echo $data['country']; ?>"/>
+                <input type="text" name="julius[country]" value="<?php echo $data['country']; ?>"/>
                 <!-- // *** make sure your validation checks above add info to $error[] for this field -->
                 <?php if($error['country']) echo '<p>', $error['country']; ?>
             </p>
