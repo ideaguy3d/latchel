@@ -126,27 +126,10 @@ if(isset($_POST['data'])) {
         $valid = false;
     }
     
+    //-- first & last
     $validateName('firstname');
     $validateName('lastname');
     
-    
-    if(!preg_match('/^[a-z,. ]+$/i', $data['firstname'])) {
-        $error['firstname'] = 'Only letters, commas, and periods are allowed';
-        $valid = false;
-    }
-    else if(strlen($data['firstname']) > 128) {
-        $error['firstname'] = 'Only allowed to have 128 characters';
-        $valid = false;
-    }
-    
-    if(!preg_match('/^[a-z,. ]+$/i', $data['lastname'])) {
-        $error['firstname'] = 'Only letters, commas, and periods are allowed';
-        $valid = false;
-    }
-    else if(strlen($data['firstname']) > 128) {
-        $error['firstname'] = 'Only allowed to have 128 characters';
-        $valid = false;
-    }
     
     // add data and retrieve last insert ID
     $newId = $member->add($data);
