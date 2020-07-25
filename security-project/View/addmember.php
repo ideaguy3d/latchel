@@ -45,7 +45,7 @@ $member = new Members();
 // implementing country code validation
 $pdo = $member->getPdo();
 $statement = $pdo->query('select * from iso_country_codes');
-$selectedCountry = $_POST['julius']['country'] ?? null;
+$selectedCountry = $_POST['data']['country'] ?? null;
 $countrySelect = '<select name="julius[country]">' . PHP_EOL;
 $countryValidate = [];
 while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -90,6 +90,12 @@ if(isset($_POST['data'])) {
     else {
         // *** validation: need to add info to $error['dob']
         $error['dob'] = 'Unable to add dob info';
+        $valid = false;
+    }
+    
+    // filter input with strip_tags()
+    foreach($data as $key => $value) {
+        $date[$key] = trim(strip_tags($value));
     }
     
     // *** security: all incoming data should be filtered and/or validated!
@@ -125,7 +131,6 @@ if(isset($_POST['data'])) {
         <br/>
 
         <form action="?page=addmember" method="POST">
-
             <!-- Birthday DOB -->
             <p class="app-input-birthday">
                 <!-- // *** validation: birthdate validation is already done -->
@@ -238,7 +243,7 @@ if(isset($_POST['data'])) {
             <p class="app-input-country">
                 <!-- // *** validation: implement a database lookup -->
                 <label>Country: </label>
-                <input type="text" name="julius[country]" value="<?php echo $data['country']; ?>"/>
+                <input type="text" name="data[country]" value="<?php echo $data['country']; ?>"/>
                 <!-- // *** make sure your validation checks above add info to $error[] for this field -->
                 <?php if($error['country']) echo '<p>', $error['country']; ?>
             </p>
