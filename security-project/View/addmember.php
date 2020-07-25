@@ -79,7 +79,7 @@ if(isset($_POST['data'])) {
             $error[$key] = "$key can only have letters, numbers, commas, and periods";
             $valid = false;
         }
-        else if (strlen($data[$key]) > $limit) {
+        else if(strlen($data[$key]) > $limit) {
             $error[$key] = "$key can only be $limit characters long";
             $valid = false;
         }
@@ -156,7 +156,7 @@ if(isset($_POST['data'])) {
     $validateAddressComponents('city', 64);
     $validateAddressComponents('stateProv', 32);
     
-    // country is using the result set from the db
+    //-- country: is using the result set from the db
     if(isset($data['count'])) {
         $countryKey = array_search($data['country'], $countryValidate, true);
         if(false === $countryKey) {
@@ -169,6 +169,7 @@ if(isset($_POST['data'])) {
         }
     }
     
+    //-- postcode:
     $postCode = strtoupper($data['postcode']);
     if(!ctype_alnum(str_replace([' ', '-'], '', $postCode))) {
         $error['postcode'] = 'Only letters, numbers, and dashes are allowed';
@@ -179,14 +180,53 @@ if(isset($_POST['data'])) {
         $valid = false;
     }
     
-    // add data and retrieve last insert ID
-    $newId = $member->add($data);
+    //-- phone number:
+    if(!ctype_digit(str_replace([' ', '-'], '', $data['telephone']))) {
+        $error['telephone'] = 'Phone number can only have spaces, numbers, and dashes';
+        $valid = false;
+    }
     
-    // *** validation: check to see if form data is valid before sending email
-    // send email confirmation
-    //$member->confirm($newId, $data);
+    //-- password:
+    if(!(isset($data['password']) && !empty($data['password']))) {
+        $error['password'] = 'A password is required';
+        $valid = false;
+    }
     
-    // *** redirect to the confirmation page if valid or if 1st time
+    // *** validation: check to see if form data is valid before sending email and adding data
+    if($valid) {
+        // add data and retrieve last insert ID
+        $newId = $member->add($data);
+        
+        try {
+            // send email confirmation
+            $address = "phpninja@mail.com";
+            $newName = $data['firstname'] . ' ' . $data['lastname'];
+            require_once('./PHPMailer/class.phpmailer.php');
+            $mail = new PHPMailer();
+            $body = "Welcome $newName ! <br> Enjoy your new membership";
+            $mail->AddReplyTo($address, 'HackMatch.io');
+            $mail->SetFrom($address, 'HackMatch.io');
+            $mail->AddAddress($data['email'], $newName);
+            $mail->AddBCC($address, 'HackMatch.io');
+            $mail->Subject = 'HackMatch.io membership';
+            $member->confirm($newId, $data);
+            $mail->AltBody = "Visit HackMatch.io to learn more";
+            $mail->MsgHTML($body);
+            if(!$mail->Send()) {
+                $mailStatus = 'Mailer Error: ' . $mail->ErrorInfo;
+            }
+            else {
+                $mailStatus = 'Confirmation Email sent';
+            }
+        }
+        catch(\Throwable $e) {
+            error_log($e->getMessage(), 3, './email_error.log');
+        }
+        
+        // *** redirect to the confirmation page if valid or if 1st time
+        // Header('Location: ./confirmation');
+    }
+    
 }
 ?>
 
