@@ -6,22 +6,22 @@
  * Time: 10:17 PM
  */
 
-/* basics */
+/* 1 - basics */
 //require "basics/bit-ops.php";
 //require "basics/basics.php";
 
-/* arrays */
-//require "arrays/quiz-arrays.php";
-
-/* oop */
+/* 2 - oop */
 //require "oop/cloning.php";
 //include "oop/quiz-oop.php";
 //include "basics/quiz2.php";
 
-/* security */
+/* 3 - security */
 //include 'security/filter2.php';
 //include 'security/valid1.php';
 include 'security/filter4.php';
+
+/* arrays */
+//require "arrays/quiz-arrays.php";
 
 /* data formats */
 //include 'data-formats/datetime.php';
