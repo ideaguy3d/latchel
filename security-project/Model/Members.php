@@ -222,8 +222,9 @@ class Members
     public function getPdo() {
         // *** Need to turn off error mode in production
         if(!$this->db_pdo) {
-            $this->db_pdo = new PDO(DB_DSN, DB_USER, DB_PWD,
-                [PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING]);
+            $this->db_pdo = new PDO(
+                DB_DSN, DB_USER, DB_PWD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING]
+            );
         }
         
         return $this->db_pdo;
