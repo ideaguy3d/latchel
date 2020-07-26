@@ -22,19 +22,24 @@ $default = new class() {
     public int $imageMax = 128;
     public int $valid = 0;
     public int $maxId = 999999;
-    public array $error = ['id' => '', 'name' => '', 'image' => ''];
+    public array $error = ['id' => false, 'name' => false, 'image' => false];
+    public string $validElem = '<p class="valid">Valid Input ✅😎👌</p>';
+    
+    public function error(string $input): string {
+        return $this->error[$input] ?: $this->validElem;
+    }
 };
 
 // All inputs should be tested if they are set, and then properly filtered
 $id = $_GET['id'] ?? null;
-$id = is_null($id) ? (int)$id : 0; // casting to int can filter xss
+$id = !is_null($id) ? (int)$id : 0; // casting to int can filter xss
 
 $name = $_GET['name'] ?? null;
-$name = is_null($name) ? strip_tags($name) : $default->name;
+$name = !is_null($name) ? strip_tags($name) : $default->name;
 $name = preg_replace('/[^a-zA-Z,. ]/', '', $name);
 
 $image = $_GET['image'] ?? null;
-$image = is_null($image) ? strip_tags($image) : $default->image;
+$image = !is_null($image) ? strip_tags($image) : $default->image;
 
 // Validate the input
 if($id > $default->maxId) $default->error['id'] = "ID must be less than $default->maxId";
@@ -52,7 +57,7 @@ if(strlen($image) > $default->imageMax) {
 }
 else if(!preg_match('/^.+(jpg|png)$/i', $image)) {
     $image = $default->image;
-    $default->error['image'] = "Image must be a jpg, png";
+    $default->error['image'] = "Image must be a jpg or png";
 }
 else $default->valid++;
 
@@ -66,6 +71,9 @@ echo "id = $id, name = $name, image = $image";
     <meta charset="UTF-8">
     <title>Protect Against Stored XSS</title>
     <style>
+        html {
+            font-family: sans-serif;
+        }
         table {
             width: 600px;
         }
@@ -77,6 +85,11 @@ echo "id = $id, name = $name, image = $image";
 
         td {
             border: thin solid black;
+        }
+        
+        .valid {
+            color: #1dc116;
+            padding: 4px;
         }
     </style>
 </head>
@@ -126,14 +139,15 @@ echo "id = $id, name = $name, image = $image";
         <tr class="form-id">
             <th>ID</th>
             <td><input type="text" name="id" size="8" maxlength="8"/></td>
-            <td>Current Value: <?php echo htmlentities($id); ?></td>
+            <!-- htmlentities($id);  -->
+            <td>Current Value: <?php echo $id ?></td>
             <td><?= $default->error['id'] ?></td>
         </tr>
         <tr class="form-name">
             <th>Name</th>
             <td><input type="text" name="name" maxlength="128"/></td>
             <td>Current Value: <?php echo htmlentities($name); ?></td>
-            <td><?= $default->error['name'] ?></td>
+            <td><?= $default->error('name') ?></td>
         </tr>
         <tr class="form-image">
             <th>Image</th>
