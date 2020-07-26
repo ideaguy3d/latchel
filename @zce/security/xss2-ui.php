@@ -1,11 +1,54 @@
 <?php
 
-/* protecting against stored XSS attacks 7252072101 */
+/*
+~ protecting against stored XSS attacks ~
+protect_against_xss_stored_1
+protect_against_xss_stored_2
+*/
+
+// prevent PHP from echoing out information
+$id = 0;
+$name = '';
+$image = '';
+
+// if input is not set, provide a default value
+$default = new class() {
+    // default values for input
+    public string $name = 'Guest';
+    public string $image = 'default.png';
+    
+    // default validation rules
+    public int $nameMax = 128;
+    public int $imageMax = 128;
+    public int $valid = 0;
+    public int $maxId = 999999;
+    public array $error = ['id' => '', 'name' => '', 'image' => ''];
+};
 
 // All inputs should be tested if they are set, and then properly filtered
 $id = $_GET['id'] ?? null;
+$id = is_null($id) ? (int)$id : 0; // casting to int can filter xss
+
 $name = $_GET['name'] ?? null;
+$name = is_null($name) ? strip_tags($name) : $default->name;
+$name = preg_replace('/[^a-zA-Z,. ]/', '', $name);
+
 $image = $_GET['image'] ?? null;
+$image = is_null($image) ? strip_tags($image) : $default->image;
+
+// Validate the input
+if($id > $default->maxId) $default->error['id'] = "ID must be less than $default->maxId";
+else $default->valid++;
+
+if(strlen($name) > $default->nameMax) $default->error['name'] = "Name must be less than $default->nameMax";
+else $default->valid++;
+
+if(strlen($image) > $default->imageMax)
+    $default->error['image'] = "Image name must be less than $default->imageMax characters";
+else if(!preg_match('/^.+(jpg|png|gif)$/i', $image)) $default->error['image'] = "Image must be a jpg, png, or gif";
+else $default->valid++;
+
+// to help me debug
 echo "id = $id, name = $name, image = $image";
 ?>
 
@@ -70,17 +113,17 @@ echo "id = $id, name = $name, image = $image";
 
 <form>
     <table>
-        <tr>
+        <tr class="form-id">
             <th>ID</th>
             <td><input type="text" name="id"/></td>
             <td>Current Value: <?php echo $id; ?></td>
         </tr>
-        <tr>
+        <tr class="form-name">
             <th>Name</th>
             <td><input type="text" name="name"/></td>
             <td>Current Value: <?php echo $name; ?></td>
         </tr>
-        <tr>
+        <tr class="form-image">
             <th>Image</th>
             <td><input type="text" name="image"/></td>
             <td>Current Value: <img src="<?php echo $image; ?>"/></td>
