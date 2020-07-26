@@ -40,12 +40,20 @@ $image = is_null($image) ? strip_tags($image) : $default->image;
 if($id > $default->maxId) $default->error['id'] = "ID must be less than $default->maxId";
 else $default->valid++;
 
-if(strlen($name) > $default->nameMax) $default->error['name'] = "Name must be less than $default->nameMax";
+if(strlen($name) > $default->nameMax) {
+    $name = $default->name;
+    $default->error['name'] = "Name must be less than $default->nameMax";
+}
 else $default->valid++;
 
-if(strlen($image) > $default->imageMax)
+if(strlen($image) > $default->imageMax) {
+    $image = $default->image;
     $default->error['image'] = "Image name must be less than $default->imageMax characters";
-else if(!preg_match('/^.+(jpg|png|gif)$/i', $image)) $default->error['image'] = "Image must be a jpg, png, or gif";
+}
+else if(!preg_match('/^.+(jpg|png)$/i', $image)) {
+    $image = $default->image;
+    $default->error['image'] = "Image must be a jpg, png";
+}
 else $default->valid++;
 
 // to help me debug
@@ -111,25 +119,31 @@ echo "id = $id, name = $name, image = $image";
 
 <br/>
 
+<!-- 3 input fields were checked -->
+<p><?= 3 === $default->valid ? 'Successfully saved data' : 'Error, unable to save data' ?></p>
 <form>
     <table>
         <tr class="form-id">
             <th>ID</th>
-            <td><input type="text" name="id"/></td>
-            <td>Current Value: <?php echo $id; ?></td>
+            <td><input type="text" name="id" size="8" maxlength="8"/></td>
+            <td>Current Value: <?php echo htmlentities($id); ?></td>
+            <td><?= $default->error['id'] ?></td>
         </tr>
         <tr class="form-name">
             <th>Name</th>
-            <td><input type="text" name="name"/></td>
-            <td>Current Value: <?php echo $name; ?></td>
+            <td><input type="text" name="name" maxlength="128"/></td>
+            <td>Current Value: <?php echo htmlentities($name); ?></td>
+            <td><?= $default->error['name'] ?></td>
         </tr>
         <tr class="form-image">
             <th>Image</th>
             <td><input type="text" name="image"/></td>
-            <td>Current Value: <img src="<?php echo $image; ?>"/></td>
+            <td>Current Value: <img src="<?php echo htmlentities($image); ?>"/></td>
+            <td><?= $default->error['image'] ?></td>
         </tr>
     </table>
     <input type="submit"/>
 </form>
+
 </body>
 </html>
