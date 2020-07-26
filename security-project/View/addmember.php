@@ -290,7 +290,7 @@ if(isset($_POST['data'])) {
                         <option><?php echo $x; ?></option>
                     <?php } ?>
                 </select>
-                <?php if($error['dob']) echo '<p>', $error['dob'], '</p>'; ?>
+                <?php if($error['dob']) echo '<p>', htmlentities($error['dob']), '</p>'; ?>
             </p>
 
             <!-- Email -->
@@ -298,17 +298,17 @@ if(isset($_POST['data'])) {
                 <label>Email: </label>
                 <!-- // *** security: all values should use output escaping -->
                 <!-- // Example:  echo htmlspecialchars($data['email']); -->
-                <input type="text" name="data[email]" value="<?php echo $data['email']; ?>"/>
+                <input type="text" name="data[email]" value="<?php echo htmlentities($data['email']); ?>"/>
                 <!-- // *** validation: make sure your validation checks above add info to $error[] for this field -->
-                <?php if($error['email']) echo '<p>', $error['email']; ?>
+                <?php if($error['email']) echo '<p>', htmlentities($error['email']), '</p>' ?>
             </p>
 
             <!-- First Name -->
             <p class="app-input-first-name">
                 <label>First Name: </label>
-                <input type="text" name="data[firstname]" value="<?php echo $data['firstname']; ?>"/>
+                <input type="text" name="data[firstname]" value="<?php echo htmlentities($data['firstname']); ?>"/>
                 <!-- // *** validation: make sure your validation checks above add info to $error[] for this field -->
-                <?php if($error['firstname']) echo '<p>', $error['firstname']; ?>
+                <?php if($error['firstname']) echo '<p>', htmlentities($error['firstname']); ?>
             </p>
 
             <!-- Last Name -->
@@ -316,15 +316,15 @@ if(isset($_POST['data'])) {
                 <label>Last Name: </label>
                 <input type="text" name="data[lastname]" value="<?php echo $data['lastname']; ?>"/>
                 <!-- // *** validation: make sure your validation checks above add info to $error[] for this field -->
-                <?php if($error['lastname']) echo '<p>', $error['lastname']; ?>
+                <?php if($error['lastname']) echo '<p>', htmlentities($error['lastname']); ?>
             </p>
 
             <!-- Photo -->
             <p class="app-input-photo">
                 <label>Photo: </label>
-                <input type="text" name="data[photo]" value="<?php echo $data['photo']; ?>"/>
+                <input type="text" name="data[photo]" value="<?php echo htmlentities($data['photo']); ?>"/>
                 <!-- // *** validation: make sure your validation checks above add info to $error[] for this field -->
-                <?php if($error['photo']) echo '<p>', $error['photo']; ?>
+                <?php if($error['photo']) echo '<p>', htmlentities($error['photo']); ?>
             </p>
 
             <!-- Address -->
@@ -332,7 +332,7 @@ if(isset($_POST['data'])) {
                 <label>Address: </label>
                 <input type="text" name="data[address]" value="<?php echo $data['address']; ?>"/>
                 <!-- // *** validation: make sure your validation checks above add info to $error[] for this field -->
-                <?php if($error['address']) echo '<p>', $error['address'], '</p>'; ?>
+                <?php if($error['address']) echo '<p>', htmlentities($error['address']), '</p>'; ?>
             </p>
 
             <!-- City -->
