@@ -1,6 +1,6 @@
 <?php
 
-/* protecting against stored XSS attacks */
+/* protecting against stored XSS attacks 7252072101 */
 
 // All inputs should be tested if they are set, and then properly filtered
 $id = $_GET['id'] ?? null;
@@ -61,7 +61,7 @@ echo "id = $id, name = $name, image = $image";
     <tr>
         <td><i>image</i></td>
         <td>
-            <pre>http://localhost:60/test-hacker/xss.php</pre>
+            <pre>http://localhost:60/xss.php</pre>
         </td>
     </tr>
 </table>
