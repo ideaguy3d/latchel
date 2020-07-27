@@ -1,17 +1,23 @@
 <?php /*
-~ Protecting against XSS attacks(stored/reflected), session hijacking, session fixation ~
+~ Protecting against XSS attacks(stored/reflected), session hijacking ~
 
 1. Filter, Validate, Escape, & Sanitize (helps protect against XSS):
     htmlspecialchars(), htmlentities(), preg_replace(), str_replace(), filter_var()
     ctype_*(), preg_match(), strlen(), strip_tags(), casting to correct data type,
 
 2. Session Hijacking:
-    session_regenerate_id(), One time Hash(e.g. md5()) for $_SESSION, timed logout,
+    session_regenerate_id(),
+    One time Hash(e.g. md5()) for $_SESSION,
     create logout(
+        session_name(), session_get_cookie_params(), "$_SESSION = []", "time() - 60*60*24*30*365"
+        setcookie(), session_destroy(), ini_get('session.use_cookies')
+    ),
+    logout after a certain amount of time,
+    use the db & file system in addition to session id,
+ */
 
-3. Session Fixation: */
-
-session_start(); //session_regenerate_id();
+session_start();
+session_regenerate_id();
 
 // script vars, don't store important info
 $id = 0;
@@ -30,7 +36,7 @@ $default = new class() {
     public int $valid = 0;
     public int $maxId = 999999;
     public array $error = ['id' => false, 'name' => false, 'image' => false, 'hash' => false];
-    public string $validElem = '<p class="valid">Valid Input ✅😎👌</p>';
+    public string $validElem = '<p class="valid">Valid Input ✅</p>';
     
     public function error(string $input): string {
         return $this->error[$input] ?: $this->validElem;
@@ -47,6 +53,7 @@ else if(isset($_SESSION['name'])) {
     $username = $_SESSION['username'];
 }
 
+// Sanitize
 $id = $_GET['id'] ?? null;
 $id = !is_null($id) ? (int)$id : 0; // casting to int can filter xss
 
@@ -57,7 +64,7 @@ $name = preg_replace('/[^a-zA-Z,. ]/', '', $name);
 $image = $_GET['image'] ?? null;
 $image = !is_null($image) ? strip_tags($image) : $default->image;
 
-// Validate the input
+// Validate
 if($id > $default->maxId) $default->error['id'] = "ID must be less than $default->maxId";
 else $default->valid++;
 
@@ -90,6 +97,17 @@ $_SESSION['hash'] = md5($_SERVER['REMOTE_ADDR'] . date('m-d-Y H:i:s'));
 // - use HTML5 built in client validation
 
 // log user out and destroy session
+$logout = $_GET['logout'] ?? false;
+if($logout) {
+    // reset session data
+    $_SESSION = [];
+    // expire the session cookie
+    if(ini_get('session.use_cookies')) {
+        $cp = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 3600, $cp['path'], $cp['domain'], $cp['secure'], $cp['httponly']);
+    }
+    session_destroy();
+}
 
 
 // to help me debug
@@ -129,6 +147,7 @@ echo "<p class='debug-info'>id = $id, name = $name, image = $image, username = $
             color: #1dc116;
             padding: 4px;
         }
+
         .float-right {
             float: right;
             padding-right: 16px;
@@ -138,15 +157,16 @@ echo "<p class='debug-info'>id = $id, name = $name, image = $image, username = $
 
 <body>
 
-<p class="float-right">
+<p class="user-info-section float-right">
     Welcome <b><?= $username ? htmlentities($username) : 'Guest' ?></b>
     <br> id: <small> <?= session_id() ?></small>
+    <br> <?= $username ? '<a href="./?logout=true">logout</a>' : '' ?>
 </p>
 
 <!-- Login -->
 <?php if(false === $username) { ?>
     <form>
-        <p>Please login:</p>
+        <p>Please login: </p>
         <input name="username" type="text" maxlength="128" placeholder="username"><br>
         <input type="submit" value="Login"><br>
     </form>
@@ -186,19 +206,24 @@ echo "<p class='debug-info'>id = $id, name = $name, image = $image, username = $
     <h1><?= 3 === $default->valid ? 'Successfully saved data' : 'Error, unable to save data' ?></h1>
     <form>
         <table>
+            <!-- ID -->
             <tr class="form-id">
                 <th>ID</th>
                 <td><input type="text" name="id" size="8" maxlength="8"/></td>
                 <!-- htmlentities($id);  -->
                 <td>Current Value: <?php echo $id ?></td>
-                <td><?= $default->error('name') ?></td>
+                <td><?= $default->error('id') ?></td>
             </tr>
+
+            <!-- Name -->
             <tr class="form-name">
                 <th>Name</th>
                 <td><input type="text" name="name" maxlength="128"/></td>
                 <td>Current Value: <?php echo htmlentities($name); ?></td>
                 <td><?= $default->error('name') ?></td>
             </tr>
+
+            <!-- Image -->
             <tr class="form-image">
                 <th>Image</th>
                 <td><input type="text" name="image"/></td>
@@ -206,11 +231,11 @@ echo "<p class='debug-info'>id = $id, name = $name, image = $image, username = $
                     Current Value: <img src="<?php echo htmlentities($image); ?>"/>
                     <br> <small>img url: "<?= htmlentities($image) ?>"</small>
                 </td>
-                <td><?= $default->error('name') ?></td>
+                <td><?= $default->error('image') ?></td>
             </tr>
         </table>
-        <input type="hidden" value="<?= $_SESSION['hash'] ?>">
-        <input type="hidden" value="<?= $username ?: '' ?>">
+        <input name="hash" type="hidden" value="<?= $_SESSION['hash'] ?>">
+        <input name="username" type="hidden" value="<?= $username ?: '' ?>">
         <br>
         <input type="submit"/>
     </form>
