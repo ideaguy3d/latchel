@@ -7,6 +7,7 @@
 $statement = jDatabaseConnect();
 $urlEncode = jUrlQuery($statement);
 $httpBuilder = jBuildQuery($statement);
+$parseUrls = jParseUrls($urlEncode, $httpBuilder);
 
 /*
 $urlEncode = array (
@@ -28,10 +29,8 @@ $debug = 1;
 
 function jDatabaseConnect() {
     $pdo = new PDO(
-        'mysql:host=127.0.0.1;dbname=sweetscomplete', 'root', '',
-    // assoc = PDO::FETCH_ASSOC
-    // index = PDO::FETCH_NUM
-    //[PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_NUM]
+        'mysql:host=127.0.0.1;dbname=sweetscomplete', 'root', ''
+        , [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_NUM] // assoc = PDO::FETCH_ASSOC
     );
     
     $statement = $pdo->prepare('select job_id as id, qty, postage_class as postage, total as sale from accounting');
@@ -53,7 +52,7 @@ function jUrlQuery($statement) {
     return $queryString;
 }
 
-function jBuildQuery($statement) {
+function jBuildQuery1($statement) {
     // I know the table only has 3 records
     $queryString = new SplFixedArray(3);
     for($i = 0; $i < 3; $i++) {
@@ -64,6 +63,59 @@ function jBuildQuery($statement) {
     return $queryString;
 }
 
+function jBuildQuery($statement) {
+    $queryString = [];
+    for($i = 0; $i < 3; $i++) {
+        $queryString[$i] = '?' . http_build_query($statement->fetch(PDO::FETCH_ASSOC));
+    }
+    $statement->closeCursor();
+    $statement->execute();
+    return $queryString;
+}
+
+function jParseUrls (...$urls) {
+    $urlsParsed = [];
+    foreach($urls as $urlArr) {
+        foreach($urlArr as $url) {
+            $urlsParsed [] = parse_url($url);
+        }
+    }
+    return $urlsParsed;
+}
+
+/*
+[
+  ['?url=val', '?url2=val', '?url2=val']
+  ['?url2=val', '?url=val', '?url2=val']
+]
+*/
+function jParseUrlsBroken(...$urls) {
+    static $urlsParsed = [];
+    
+    if(1 === count($urls) && is_array($urls)) {
+        array_shift($urls);
+        $url = array_shift($urls);
+        jParseUrls($url);
+    }
+    else if(is_string($urls)){
+        $urlsParsed [] = parse_url($urls);
+        return null;
+    }
+    
+    if(!empty($urls)) {
+        $debug = 1;
+        return jParseUrls($urls);
+    }
+    return
+        $urlsParsed;
+}
+
+/* test case 2:
+[
+  ['?url=val', '?url2=val', [...]]
+  [[...], '?url=val', '?url2=val']
+]
+*/
 
 /*      $SQL_Data_Table_Structure = array (
 
