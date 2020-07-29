@@ -1,33 +1,43 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: Julius Alvarado
  * Date: 12/8/2019
  * Time: 1:46 AM
  */
-declare(strict_types=1);
 
-require 'binary-tree/BinarySearchTree2.php';
-require 'sort/ArraySort.php';
+require 'binary-trees/BinarySearchTree2.php';
+require 'sorts/ArraySort.php';
 
 use julius\BinarySearchTree2;
 use julius\ArraySort;
 
-$set1 = [10000001,11, 7,99, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 150,25, 15, 6];
+/* data sets to practice on */
+$set1 = [10000001, 11, 7, 99, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 150, 25, 15, 6];
 $set2 = [5, 4, 3, 2, 1, 0];
 $set3 = [3, 1, 9, 0, 55, 22];
 $set4 = [6, 5, 4, 3, 2, 1];
-$mergeSort = require 'sort/merge/mergeSort6.php';
 
-binarySearchTreePractice($set1);
 
-// test sort
-//echo "\n\nSorted set = \n" . var_export($mergeSort($set1), true) . "\n//\n";
+/* functions to invoke */
+//binarySearchTreePractice($set1);
+//sortPractice($set3);
+//jMergeSort6($set1);
 
+
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 function sortPractice(array $set) {
     $sort = new ArraySort($set);
     $sortedArray = $sort->mergeSort();
     echo "__>> The sorted Array ^_^ \n" . var_export($sortedArray, true) . "\n";
+}
+
+function jMergeSort6(array $set1) {
+    // test sort
+    $mergeSort = require 'sorts/merge/mergeSort6.php';
+    echo "\n\nSorted set = \n" . var_export($mergeSort($set1), true) . "\n//\n";
 }
 
 function binarySearchTreePractice($set) {
