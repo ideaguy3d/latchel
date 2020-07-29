@@ -6,8 +6,11 @@ namespace oop\models;
 
 class ModelOne
 {
-    public function __construct() {
+    public string $modelType;
+    
+    public function __construct($regression) {
         echo "ModelOne is being constructed!";
+        $this->modelType = $regression;
     }
     
     public function update() {

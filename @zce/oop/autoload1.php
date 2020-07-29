@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 spl_autoload_register(function($class) {
     $contains = fn($word) => stripos($class, $word) !== false;
@@ -16,5 +16,10 @@ use oop\controllers\ControllerOne;
 
 $ctrl = new ControllerOne();
 echo $ctrl->auth();
+
+$clonedCtrl = clone $ctrl;
+
+
+$debug = 1;
 
 //
