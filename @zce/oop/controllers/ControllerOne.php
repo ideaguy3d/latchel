@@ -6,8 +6,8 @@ use oop\models\ModelOne;
 
 class ControllerOne
 {
-    private ModelOne $model;
-    private string $stats = 'PHP Statistical Computing';
+    public ModelOne $model;
+    public string $stats = 'PHP Statistical Computing';
     public bool $doDeepClone = false;
     
     public function __construct() {
