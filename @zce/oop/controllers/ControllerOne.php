@@ -8,6 +8,7 @@ class ControllerOne
 {
     private ModelOne $model;
     private string $stats = 'PHP Statistical Computing';
+    public bool $doDeepClone = false;
     
     public function __construct() {
         echo "ControllerOne constructor";
@@ -19,8 +20,9 @@ class ControllerOne
     }
     
     public function __clone() {
-        // TODO: Implement __clone() method.
         echo "\n\n_> cloning ControllerOne \n\n";
-        $this->model = new ModelOne('linear');
+        if($this->doDeepClone) {
+            $this->model = new ModelOne('linear');
+        }
     }
 }
