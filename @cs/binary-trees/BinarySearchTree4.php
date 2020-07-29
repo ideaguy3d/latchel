@@ -5,7 +5,7 @@ namespace julius;
 
 use Closure;
 
-class BinaryTree4
+class BinarySearchTree4
 {
     private object $root;
     

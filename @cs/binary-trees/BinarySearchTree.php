@@ -24,9 +24,9 @@ class BinarySearchTree
      */
     public function insert($key) {
         $node = new class ($key) {
-            public $key;
-            public $left;
-            public $right;
+            public ?object $key;
+            public ?object $left;
+            public ?object $right;
             
             public function __construct($key) {
                 $this->key = $key;
