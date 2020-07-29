@@ -6,6 +6,8 @@
 use oop\controllers\ControllerOne;
 use oop\models\ModelOne;
 
+echo "\n++waking up\n";
+
 $bits = file_get_contents('controller-one.txt');
 
 // I have to allow ControllerOne & ModelOne because ControllerOne uses ModelOne

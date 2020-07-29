@@ -10,6 +10,7 @@ include 'oop/controllers/ControllerOne.php';
 include 'oop/models/ModelOne.php';
 
 use oop\controllers\ControllerOne;
+use oop\models\ModelOne;
 
 $ctrl = new ControllerOne();
 
@@ -17,3 +18,6 @@ $ctrl = new ControllerOne();
 $bits = serialize($ctrl);
 file_put_contents('controller-one.txt', $bits);
 unset($ctrl);
+
+echo "\n-- going to sleep\n";
+sleep(2);

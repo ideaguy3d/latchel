@@ -15,11 +15,15 @@ abstract class Paintings
     }
 
     public function __construct() {
-        echo "in Paintings{} class";
+        echo "\nin Paintings{} class\n";
     }
 }
 
 class Reviews extends Paintings {
+    public function __construct() {
+        parent::__construct();
+    }
+    
     public function toDescendStairs() {
         echo "Whoo hoo!";
     }
@@ -27,6 +31,9 @@ class Reviews extends Paintings {
 
 $reviews = new Reviews();
 $reviews->toDescendStairs();
+
+echo "\n\n";
+
 
 
 
