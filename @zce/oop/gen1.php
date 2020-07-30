@@ -10,7 +10,8 @@ define('GEN_LIMIT', 99);
 
 
 //simple();
-perceptron();
+//perceptron();
+superBasic();
 
 function perceptron () {
     foreach(genOne() as $i =>  $item) {
@@ -21,7 +22,7 @@ function perceptron () {
 
 function simple () {
     $fastArr = new SplFixedArray(GEN_LIMIT);
-    foreach(gen() as $item) {
+    foreach(g() as $item) {
         $eo = 0 === ($item % 2) ? 'even' : 'odd';
         $i = 'even' === $eo ? $item : null;
         if(!is_null($i)) $fastArr[$i] = $eo;
@@ -30,6 +31,18 @@ function simple () {
     foreach($fastArr as $i => $value) {
         if(empty($value)) continue;
         echo "\nfastArr[$i] = $value\n";
+    }
+}
+
+function superBasic () {
+    function g () {
+        for($j = 0; $j < GEN_LIMIT; $j++) {
+            yield 'j' => $j;
+        }
+    }
+    
+    foreach(g() as $k => $v) {
+        echo "$k = $v, ";
     }
 }
 
