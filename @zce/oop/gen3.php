@@ -21,7 +21,7 @@ function per() {
     $types = ['classify', 'predict', 'recommend'];
     $fastArr = SplFixedArray::fromArray($types);
     
-    $struct = new class(){
+    $struct = new class() {
         public string $x = 'Hello';
         public string $y = 'World';
         public int $z = GEN_LIMIT * 4;
