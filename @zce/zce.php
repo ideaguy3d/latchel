@@ -7,6 +7,7 @@
  */
 
 include 'oop/models/ModelOne.php';
+include 'strings/StrArrayAccess.php';
 
 /* 1 - basics */
 //require "basics/bit-ops.php";
@@ -42,12 +43,18 @@ include 'oop/models/ModelOne.php';
 
 
 /* 5 - functions */
-include 'functions/functions3.php';
+//include 'functions/functions3.php';
 
-/* databases & SQL */
+
+/* 6 - strings */
+require 'strings/strings1.php';
+
+
+/* 10 - databases & SQL */
 //require 'db-sql/query2url.php';
 
-/* data formats */
+
+/* 11 - data formats */
 //include 'data-formats/datetime.php';
 
 
