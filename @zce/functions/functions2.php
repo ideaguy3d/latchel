@@ -17,45 +17,46 @@ function com() {
 $foo = 'com';
 $foo();
 
-
-//-- "Return by Reference" prac,
+//-- "Return by Reference" practice,
 // (these are more useful in classes):
 function &refPrac(string $status): string {
     global $n;
-    $foo = "$n bar_$status $n";
-    echo "$n refPrac() $n";
-    return $foo;
+    $cep = "[ bar_$status ]";
+     echo "$n refPrac() cep = $cep $n";
+    return $cep;
 }
 
-$someValue = &refPrac('hello');
-echo $someValue;
-refPrac('world');
-echo $someValue;
+//$someValue = &refPrac('hello');
+
+function &token () {
+    $arr = ['metric' => 'classification', 'train' => 'nuero'];
+    return $arr;
+}
+$redu = ['math' => 'linear', 'form' => 'chain'];
+//$nize = &token();
+$redu['math'] = 'differential';
+$nize['train'] = 'ceptron';
+//token();
 
 // return by reference prac2
-class SomeRef
+class DataRef
 {
-    private $dsn = 'hi';
+    private string $dsn = 'hi';
 
-    function &refPrac2(): string {
-        global $n;
-        $dsn = $this->dsn;
-        $r = rand(0, 10000);
-        $this->dsn = "{$n}bar0101{$r}j:$dsn $n";
+    public function &dsnRef(): string {
+        $this->dsn = "bar0101j_ $this->dsn _";
         return $this->dsn;
     }
 
-    function setDsn(string $v): void {
+    public function setDsn(string $v): void {
         $this->dsn = $v;
-        $this->refPrac2();
+        $this->dsnRef();
     }
 }
 
-$ref = new SomeRef();
-$someValue2 = &$ref->refPrac2();
-echo $someValue2;
+$ref = new DataRef();
+$someValue2 = &$ref->dsnRef();
 $ref->setDsn('bye');
-echo $someValue2;
 
 // return by reference prac3
 class fooRef
@@ -69,11 +70,7 @@ class fooRef
 
 $bar = new fooRef;
 $baz = &$bar->getDsn();
-echo $baz; // hi
 $bar->dsn = 'bye';
-
-echo "$n $baz $n"; // bye
-
 
 //-- Lambda prac:
 $lambda = function (int $a, int $b): int {
