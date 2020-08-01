@@ -27,7 +27,8 @@
         "ext-mysqli": "*",
         "ext-ctype": "*",
         "ext-dom": "*",
-        "ext-xsl": "*"
+        "ext-xsl": "*",
+        "ext-mbstring": "*"
     },
 	"config": {
 		"process-timeout": 0
