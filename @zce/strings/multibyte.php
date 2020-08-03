@@ -33,6 +33,7 @@ function basic2() {
         'latinChars' => "Hello",
         'accentedChars' => "ça va?",
     ];
+    static $r = '';
     
     $method = array_key_first($ways);
     $enc = array_shift($ways);
@@ -41,12 +42,9 @@ function basic2() {
     $strMbLen = mb_strlen($enc);
     $firstChar = $enc[0];
     
-    if(!empty($ways)) {
-       basic2(); // return
-    }
-
-    $r = "\n -$method: $enc \n -$encode \n -len: $strLen, $strMbLen \n -char1: $firstChar\n";
-    $debug = "$r[0], $r[5]";
+    if(!empty($ways)) basic2();
+    
+    $r .= "\n -$method: $enc \n -$encode \n -len: $strLen, $strMbLen \n -char1: $firstChar\n";
     
     // **Recurse_Point** \\
     return $r;

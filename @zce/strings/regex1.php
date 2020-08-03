@@ -17,7 +17,7 @@ function getTabbingCount(array $tabbingInput, int $i): void {
 
     preg_match('/\d?\d?\w.*tab.*\w/i', $notes, $tabs);
 
-    //echo "\n\n $i) matches = " . ($tabs[0]);
+    echo "\n\n $i) matches = " . ($tabs[0]);
 
     if (++$i === count($tabbingInput)) return;
     getTabbingCount($tabbingInput, $i);
