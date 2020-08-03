@@ -24,7 +24,10 @@ TABBER
 Apply standard pre cancelled stamps
 
 MAIL
-Sort, bundle, and tray "
+Sort, bundle, and tray
+
+NOTE: TABBER
+"
 
     //-------------------------------------------------------
     , "PRINT:
@@ -43,7 +46,9 @@ PMOD-
 STANDARD-PERMIT 1935
 MAIL:
 SORT, BUNDLE, AND TRAY
-PREPARE FOR DELIVERY TO THE P.O."
+PREPARE FOR DELIVERY TO THE P.O.
+
+NOTE TAB"
 
     //-------------------------------------------------------
     , "2 PRINT FILES
@@ -74,7 +79,9 @@ INSERT (1)
 Insert letter into CUSTOM 6x9 Envelope with turkey leaf
 
 MAIL
-Sort, bundle, and tray - DROP SHIP"
+Sort, bundle, and tray - DROP SHIP
+
+NOTE: standard tabber"
 
     //-------------------------------------------------------
     , "PRINT:
@@ -94,7 +101,9 @@ SORT, BUNDLE, AND TRAY
 PREPARE FOR DELIVERY TO THE P.O.
 
 PMOD
-STANDARD- PERMIT 1935"
+STANDARD- PERMIT 1935
+
+note: tab 1 from center and tab 2 on left"
 
     //-------------------------------------------------------
     , "PRINT
