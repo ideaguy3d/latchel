@@ -4,6 +4,8 @@
  * User: Julius Alvarado
  * Date: 8/2/2020
  * Time: 11:12 PM
+ *
+ * strspn(), strcspn(), substr_count()
  */
 
 $strInput = require 'strInput.php';
@@ -11,7 +13,9 @@ $strInput = require 'strInput.php';
 $searchFor = ['tabber', ' tab ', ' tabs '];
 
 //edgeCase();
-echo countSubStrings($searchFor, $strInput);
+//countSubStrings($searchFor, $strInput);
+//stringSpan();
+
 
 function edgeCase() {
     $input = 'apple';
@@ -26,16 +30,16 @@ function edgeCase() {
     echo false === strpos($input, $letter) ? $notFound() : $found();
 }
 
-function countSubStrings (array $searchTerms, array $strInput): string {
+function countSubStrings(array $searchTerms, array $strInput): void {
     static $r = '';
     $searchTerm = array_shift($searchTerms);
     recurseOver($strInput, $searchTerm, $r);
     
     if(!empty($searchTerms)) countSubStrings($searchTerms, $strInput);
-    return $r;
+    echo $r;
 }
 
-function recurseOver (array $set, string $searchTerm, string &$r): void {
+function recurseOver(array $set, string $searchTerm, string &$r): void {
     // search 2 elements at a time
     $elem = strtolower(array_shift($set));
     $elem2 = strtolower(array_shift($set));
@@ -48,6 +52,20 @@ function recurseOver (array $set, string $searchTerm, string &$r): void {
     if(null !== $elem2 && isset($searchCount2))
         $r .= "\n_> searched for: $searchTerm, found: $searchCount2\n";
 }
+
+function stringSpan() {
+    // 2
+    $subject = '99 is the answer to the 128th question';
+    // 0
+    $subject2 = 'num 4543212 is the answer to the 128th question';
+    $mask = '123456789';
+    
+    $v = strspn($subject, $mask);
+    $v2 = strspn($subject2, $mask, 4);
+    $u = strcspn($subject2, $mask); // 4
+    $debug = 1;
+}
+
 
 
 //
