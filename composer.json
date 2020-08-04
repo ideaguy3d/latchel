@@ -28,7 +28,8 @@
         "ext-ctype": "*",
         "ext-dom": "*",
         "ext-xsl": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-xdebug": "*"
     },
 	"config": {
 		"process-timeout": 0
