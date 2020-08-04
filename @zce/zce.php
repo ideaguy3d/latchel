@@ -11,9 +11,10 @@ include 'strings/StrArrayAccess.php';
 
 /* 1 - basics */
 //require "basics/bit-ops.php";
-//require "basics/basics.php";
-//include "basics/quiz2.php";
-
+//require "basics/basics2.php";
+//include "basics/q2.php";
+//require 'basics/environment.php';
+require 'basics/zval.php';
 
 /* 2 - oop */
 //require "oop/cloning.php";
@@ -47,7 +48,22 @@ include 'strings/StrArrayAccess.php';
 
 
 /* 6 - strings */
-require 'strings/strings1.php';
+//require 'strings/multibyte.php';
+//require 'strings/search.php';
+//require 'strings/regex1.php';
+//require 'strings/q1.php';
+
+
+/* 7 - web features */
+//require 'web-features/session1.php';
+
+
+/* 8 - error handling */
+//require 'error-handling/error1.php';
+
+
+/* 9 - File io */
+//require 'file-io/file1.php';
 
 
 /* 10 - databases & SQL */
@@ -60,19 +76,3 @@ require 'strings/strings1.php';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// end of file
