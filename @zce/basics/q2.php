@@ -12,24 +12,30 @@ x7. B
 
 */
 
-define('CONSTANT', 1);
-define('_CONSTANT', 0);
-define('EMPTY', '');
-
-/*if(!empty(EMPTY)) {
-    if(!((boolean)_CONSTANT)) {
-        echo 'one';
+namespace
+{
+    define('CONSTANT', 1);
+    define('_CONSTANT', 0);
+    // error, EMPTY is a language construct
+    define('EMPTY', '');
+    
+    if(!empty(empty(_CONSTANT))) {
+        if(!((boolean)_CONSTANT)) {
+            echo 'one';
+        }
     }
-}*/
+}
 
-
-namespace myapp\utils\hello {
+namespace myapp\utils\hello
+{
     function world() {
         echo 'Ello Earth';
     }
 }
 
-namespace myapp {
+namespace myapp
+{
+    
     use utils\hello\world;
     
     function h1() {
@@ -41,14 +47,9 @@ namespace myapp {
     }
 }
 
-myapp\h1();
-
-
-
-
-$debug = 1;
-
-
-
-
-// end of file
+namespace
+{
+    myapp\h1();
+    
+    $debug = 1;
+}

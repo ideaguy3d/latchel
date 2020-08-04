@@ -36,12 +36,12 @@ function numberRepresentations() {
     // exponential
     $e_num = 0.137259e6; // 137259
     $e2_num = 0.99528e5; // 99528
-    $e_sum = $e_num - $e2_num; // 37731
+    $e_sum = $e_num + $e2_num; // 37731
     
     echo "\n\n_> $b_num + $b2_num = $b_sum";
     echo "\n\n_> $o_num + $o2_num = $o_sum";
     echo "\n\n_> $x_num + $x2_num = $x_sum";
-    echo "\n\n_> $e_num - $e2_num = $e_sum";
+    echo "\n\n_> $e_num + $e2_num = $e_sum";
 }
 
 function constantsIteration (string $phpUsage) {
@@ -52,6 +52,7 @@ function constantsIteration (string $phpUsage) {
 
 function constantsRecursion (string $phpUsage) {
     static $i = 0;
+    
     $k = array_keys(DATA_FIELDS)[$i];
     if(DATA_FIELDS[$k]) printf($phpUsage, DATA, $k);
     
