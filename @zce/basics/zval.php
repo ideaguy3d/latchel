@@ -8,12 +8,15 @@
 
 echo "\n\n";
 
+scalarZvalContainers();
+
 function scalarZvalContainers () {
     $x = "perceptron";
     $y = &$x;
     xdebug_debug_zval('x');
     xdebug_debug_zval('y');
-    unset($y);
+    
+    
     $y = 'cross validation';
     xdebug_debug_zval('x');
     xdebug_debug_zval('y');
@@ -29,4 +32,4 @@ function scalarZvalContainers () {
 
 
 
-$debug = 1;
+echo "\n\n";

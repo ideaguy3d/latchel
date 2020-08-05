@@ -17,10 +17,27 @@ class Features
     // 'metrics', 'dimensions'
     private array $types;
     
+    protected array $bigData;
+    
     public Features $featureResults;
     
     public function __construct(string $type) {
         $this->types [] = $type;
+        
+        foreach($this->types as $type) {
+            // create a 200MB array
+            for($i=0; $i <= 400_000; $i++) {
+                $this->bigData [] = [
+                    "$type cluster reduce",
+                    "$type training set computation",
+                    [0,1,0,1],
+                    [1,0,1,0]
+                ];
+            }
+        }
+        
+        // This probably creates a memory leak if unset()
+        $this->pipelines = $this;
     }
     
     public function getPipelines(): string {
@@ -32,12 +49,22 @@ class Features
             -- will invoke ctor, which re-inits the obj from scratch --
             $this->pipelines = new $this;
          */
+        
         unset($this->pipelines);
         $this->pipelines = clone $this;
+        foreach($this->pipelines as $prop => $value) {
+            if('pipeline' !== $prop) unset($this->pipelines->$prop);
+        }
     }
     
     public function __toString() {
         return 'Please append "->pipelines"';
+    }
+    
+    public function __unset($name) {
+        unset($this->bigData);
+        unset($this->pipelines);
+        echo "\n_> Freeing memory from buffer\n";
     }
 }
 
@@ -59,6 +86,13 @@ class FeatureSelection extends Features
     public function __toString() {
         return 'Please append "->pipelines"';
     }
+    
+    public function freeMemory() {
+        $this->bigData = [];
+        unset($this->bigData);
+        unset($this->pipelines);
+        echo "\n_> Freeing memory from buffer\n";
+    }
 }
 
 class FeatureExtraction extends Features
@@ -69,12 +103,24 @@ class FeatureExtraction extends Features
 }
 
 $featureSelection = new FeatureSelection();
+$buildPipeline = false;
 
-$featureSelection->addPipeline('Quantity');
-$featureSelection->addPipeline('Sales');
 
-echo "\n\n"; 
+echo "\n\n";
 
-echo $featureSelection->pipelines->pipeline[0];
+if($buildPipeline) {
+    $featureSelection->addPipeline('Quantity');
+    $featureSelection->addPipeline('Sales');
+    
+    echo $featureSelection->pipelines->pipeline[0];
+    echo $featureSelection->pipelines->pipeline[1];
+}
+else {
+    // This begins the memory leak, but it's not even noticeable
+    $featureSelection->freeMemory();
+    unset($featureSelection);
+}
+
+
 
 echo "\n\n";
