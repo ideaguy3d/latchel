@@ -14,7 +14,9 @@ include 'strings/StrArrayAccess.php';
 //require "basics/basics2.php";
 //include "basics/q2.php";
 //require 'basics/environment.php';
-require 'basics/zval.php';
+//require 'basics/zval.php';
+require 'basics/mem-leak.php';
+
 
 /* 2 - oop */
 //require "oop/cloning.php";

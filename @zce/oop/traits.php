@@ -11,7 +11,7 @@
 
 trait Singleton
 {
-    private static $instance;
+    private static self $instance;
     
     public static function getInstance() {
         if(!(self::$instance instanceof self)) {
