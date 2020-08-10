@@ -8,3 +8,10 @@ dist
 images
 security-project/PHPMailer
 *.csv
+js/jquery/.bower.json
+js/jquery/AUTHORS.txt
+js/jquery/bower.json
+js/jquery/external/sizzle/LICENSE.txt
+js/jquery/LICENSE.txt
+js/jquery/README.md
+js/jquery/src/.eslintrc.json

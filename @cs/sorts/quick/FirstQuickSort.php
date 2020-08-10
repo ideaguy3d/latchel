@@ -26,8 +26,7 @@ class FirstQuickSort
         
         if($this->arrCount > 1) { // {2}:
             $index = $this->partition($left, $right); // {3}:
-            
-            if($left < $index - 1) $this->quick($left, $index -1); // {5}:
+            if($left < $index - 1) $this->quick($left, $index - 1); // {5}:
             if($index < $right) $this->quick($index, $right); // {7}:
         }
     }
@@ -63,7 +62,7 @@ class FirstQuickSort
             
             if($i <= $j) { // {14}: now compare whether the "left pointer index" is <= the "right pointer index" meaning the left item "$this->arr[$i]" is <= the right item "$this->arr[$j]"
                 $this->swap($i, $j); // {15}: swap them, shift pointers, repeat process"goto {11}:"
-                ++$i && --$j; // I wonder if this makes no difference or slows down or speeds up the script 🤔 ?
+                ++$i && --$j; // I wonder if this makes no difference, slows down or speeds up the script 🤔 ?
             }
         }
         
