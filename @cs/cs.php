@@ -36,7 +36,8 @@ namespace compSciPractice
     
     function quickSort (array $set): void {
         require "sorts/quick/FirstQuickSort.php";
-        $qs = new \FirstQuickSort();
+        $qs = (new \FirstQuickSort($set))->sort();
+        echo var_export($qs, true);
     }
     
     
