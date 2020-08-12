@@ -22,6 +22,11 @@ namespace compSciPractice
     $set4 = [6, 5, 4, 3, 2, 1];
     $set5 = [3,5,1,6,4,7,2];
     
+    // combine all the sets
+    $sets = array_filter(array_keys($GLOBALS), fn($k) => false !== strpos($k, 'set'));
+    $allSets = [];
+    foreach($sets as $i => $set) $allSets = array_merge($allSets, $$set);
+    
     /* functions to invoke */
     //binarySearchTree($set1);
     //arraySort($set3);
