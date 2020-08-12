@@ -38,7 +38,7 @@ namespace compSciPractice
     //binarySearchTree($set1);
     //arraySort($set3);
     //mergeSort($set1);
-    quickSort($set5);
+    quickSort($allSets);
 
 
 //-----------------------------------------------------------------------------------------------------------

@@ -39,6 +39,8 @@ class SecondQuickSort
             while($this->arr[$lPtr] < $pivot) $lPtr++;
             while($this->arr[$rPtr] > $pivot) $rPtr--;
             
+            
+            //if($lPtr <= $rPtr) $this->swap($lPtr, $rPtr) && ++$lPtr && --$rPtr; // also works
             if($lPtr <= $rPtr) $this->swap($lPtr++, $rPtr--);
         }
         
@@ -46,7 +48,8 @@ class SecondQuickSort
     }
     
     
-    private function swap(int $lPtr, int $rPtr): void {
+    private function swap(int $lPtr, int $rPtr): bool {
         [$this->arr[$lPtr], $this->arr[$rPtr]] = [$this->arr[$rPtr], $this->arr[$lPtr]];
+        return true;
     }
 }
