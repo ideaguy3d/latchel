@@ -26,10 +26,10 @@ namespace compSciPractice
     $set1 = [10000001, 11, 7, 99, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 150, 25, 15, 6];
     $set2 = [5, 4, 3, 9954, 2, 1, 0];
     $set3 = [3, 1, 9, 0, 55, 22];
-    $set4 = [6, 5, 4, 3, 2, 1];
-    $set5 = [3, 351, 5, 1, 6, 4, 7, 9957, 9956, 2];
+    $set4 = [6, 5, 4, 9957, 9956, 3, 2, 351, 1];
+    $set5 = [3, 5, 1, 6, 4, 7, 2];
     
-    // combine all the sets
+    // merge all the sets
     $sets = array_filter(array_keys($GLOBALS), fn($k) => false !== strpos($k, 'set'));
     $allSets = [];
     foreach($sets as $set) $allSets = array_merge($allSets, $$set);
@@ -38,7 +38,7 @@ namespace compSciPractice
     //binarySearchTree($set1);
     //arraySort($set3);
     //mergeSort($set1);
-    quickSort($allSets);
+    quickSort($set5);
 
 
 //-----------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ namespace compSciPractice
     
     
     function quickSort(array $set): void {
-        $qs = (new FirstQuickSort($set))->sort();
+        $qs = (new SecondQuickSort($set))->sort();
         echo var_export($qs, true);
     }
     

@@ -7,7 +7,7 @@
  */
 
 
-namespace cs\sorts\quick;
+namespace compSciPractice;
 
 
 class SecondQuickSort
@@ -26,6 +26,7 @@ class SecondQuickSort
     }
     
     private function quick(int $lPtr, int $rPtr) {
+        // index is a pointer between the left&right pointers
         $index = $this->partition($lPtr, $rPtr);
         if($lPtr < $index - 1) $this->quick($lPtr, $index - 1);
         if($index < $rPtr) $this->quick($index, $rPtr);
@@ -34,12 +35,11 @@ class SecondQuickSort
     private function partition($lPtr, $rPtr): int {
         $pivot = $this->arr[floor(($lPtr + $rPtr) / 2)];
         
-        // $this->arr[idx] GET USED SOMEWHERE !!!
-        while($lPtr > $rPtr) {
-            while($lPtr < $pivot) $lPtr++;
-            while($rPtr > $pivot) $rPtr--;
+        while($lPtr <= $rPtr) {
+            while($this->arr[$lPtr] < $pivot) $lPtr++;
+            while($this->arr[$rPtr] > $pivot) $rPtr--;
             
-            if($lPtr <= $rPtr) $this->swap($lPtr, $rPtr) && ++$lPtr && --$rPtr;
+            if($lPtr <= $rPtr) $this->swap($lPtr++, $rPtr--);
         }
         
         return $lPtr;
@@ -48,6 +48,5 @@ class SecondQuickSort
     
     private function swap(int $lPtr, int $rPtr): void {
         [$this->arr[$lPtr], $this->arr[$rPtr]] = [$this->arr[$rPtr], $this->arr[$lPtr]];
-        $debug = 1;
     }
 }

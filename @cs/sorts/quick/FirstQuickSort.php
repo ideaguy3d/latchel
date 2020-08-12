@@ -13,6 +13,7 @@ class FirstQuickSort
     }
     
     public function sort(): array {
+        if($this->arrCount <= 1) return $this->arr;
         $this->quick(0, $this->arrCount - 1);
         return $this->arr;
     }
@@ -59,12 +60,12 @@ class FirstQuickSort
         
         // b
         while($i <= $j) { // {11}: while left pointer doesn't cross right pointer, execute the partition process
-            while($this->arr[$i] < $pivot) $i++; // {12}: shift the left pointer until we find an item that is GREATER than pivot
-            while($this->arr[$j] > $pivot) $j--; // {13}: shift the right pointer until we find an item that is LESS than the pivot
+            while($this->arr[$i] < $pivot) $i++; // {12}: shift the left pointer up until we find an item that is GREATER than pivot
+            while($this->arr[$j] > $pivot) $j--; // {13}: shift the right pointer down until we find an item that is LESS than pivot
             
-            if($i <= $j) { // {14}: now compare whether the "left pointer index" is <= the "right pointer index" meaning the left item "$this->arr[$i]" is <= the right item "$this->arr[$j]"
+            if($i <= $j) { // {14}: compare whether the "left pointer index" is <= the "right pointer index" meaning the left item "$this->arr[$i]" is <= the right item "$this->arr[$j]"
                 $this->swap($i, $j); // {15}: swap them, shift pointers, repeat process"goto {11}:"
-                ++$i && --$j; // I wonder if this makes no difference, slows down or speeds up the script 🤔 ?
+                ++$i && --$j; // I wonder if this makes no difference, slows down, or speeds up the script 🤔 ?
             }
         }
         
@@ -73,15 +74,12 @@ class FirstQuickSort
     }
     
     /**
-     * @param int $idx1
-     * @param int $idx2
+     * @param int $idx1 - the left pointer
+     * @param int $idx2 - the right pointer
      */
     private function swap(int $idx1, int $idx2): void {
         $aux = $this->arr[$idx1];
         $this->arr[$idx1] = $this->arr[$idx2];
         $this->arr[$idx2] = $aux;
-        
-        // test this
-        //[$this->arr[$idx1], $this->arr[$idx2]] = [$this->arr[$idx2], $this->arr[$idx1]];
     }
 }
