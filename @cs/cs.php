@@ -8,6 +8,13 @@
 
 namespace compSciPractice
 {
+    spl_autoload_register(function($name) {
+        if(false !== strpos($name, 'QuickSort')) {
+            // php passes in the name of the class prefixed with the namespace
+            $name = basename($name);
+            require "sorts\quick\\$name.php";
+        }
+    });
     
     require 'binary-trees/BinarySearchTree2.php';
     require 'sorts/ArraySort.php';
@@ -17,21 +24,21 @@ namespace compSciPractice
     
     /* data sets to practice on */
     $set1 = [10000001, 11, 7, 99, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 150, 25, 15, 6];
-    $set2 = [5, 4, 3, 2, 1, 0];
+    $set2 = [5, 4, 3, 9954, 2, 1, 0];
     $set3 = [3, 1, 9, 0, 55, 22];
     $set4 = [6, 5, 4, 3, 2, 1];
-    $set5 = [3,5,1,6,4,7,2];
+    $set5 = [3, 351, 5, 1, 6, 4, 7, 9957, 9956, 2];
     
     // combine all the sets
     $sets = array_filter(array_keys($GLOBALS), fn($k) => false !== strpos($k, 'set'));
     $allSets = [];
-    foreach($sets as $i => $set) $allSets = array_merge($allSets, $$set);
+    foreach($sets as $set) $allSets = array_merge($allSets, $$set);
     
     /* functions to invoke */
     //binarySearchTree($set1);
     //arraySort($set3);
     //mergeSort($set1);
-    quickSort($set5);
+    quickSort($allSets);
 
 
 //-----------------------------------------------------------------------------------------------------------
@@ -39,9 +46,8 @@ namespace compSciPractice
 //-----------------------------------------------------------------------------------------------------------
     
     
-    function quickSort (array $set): void {
-        require "sorts/quick/FirstQuickSort.php";
-        $qs = (new \FirstQuickSort($set))->sort();
+    function quickSort(array $set): void {
+        $qs = (new FirstQuickSort($set))->sort();
         echo var_export($qs, true);
     }
     

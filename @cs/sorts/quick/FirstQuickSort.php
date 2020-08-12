@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace compSciPractice;
+
 class FirstQuickSort
 {
     public array $arr;

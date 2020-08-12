@@ -7,7 +7,7 @@
  */
 
 
-namespace julius;
+namespace cs\sorts\quick;
 
 
 class SecondQuickSort
