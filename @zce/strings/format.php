@@ -6,15 +6,14 @@
  * Time: 2:39 PM
  * %[Argnum$][Flags][Width][.Precision]Specifier
  *
- * Conversion Specification:
+ **** Conversion Specification ****
  * Argnum       -  %2$s  param2, Spec.str
  ** Flag        -  + 0'-
  * Width        -  int specifying MIN num chars for result conversion
  * Precision    -  f,F,e,E precision. For s a cutoff point
  ** Specifier   -  %,s,d,b,c
  *
- *
- * Functions that use "Conversion Specification":
+ **** Functions that use "Conversion Specification" ****
  * sscanf() -
  * sprintf()
  * vsprintf()

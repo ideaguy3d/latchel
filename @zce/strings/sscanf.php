@@ -16,6 +16,8 @@
     
     [$age, $first, $last] = sscanf($coder, '%d\t%s %s');
     
+    $r = sscanf('12345', "%1d%1d%1d%1d%1d");
+    
     $debug = 1;
     
 })();

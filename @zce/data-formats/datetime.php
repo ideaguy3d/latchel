@@ -13,11 +13,11 @@ $dates = [
 ];
 
 try {
-    // practicing date calculations with DateInterval
+    // date calculations with DateInterval
     //DateTime::createFromFormat('m-d-Y H:i:s', '01-14-2021 14:24:15');
     $dateTime = new DateTime();
     $curTime = $dateTime->format(DateTime::COOKIE);
-    // SUPER COOL !!
+    
     // 'P1Y5M21DT9H38M11S' = 1year 5months 21days 9hours 38mins 11secs
     $interval2 = 'P1Y1M2DT9H38M11S';
     $interval = 'P1M1DT1H2M4S';
