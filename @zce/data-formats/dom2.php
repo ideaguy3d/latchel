@@ -8,12 +8,16 @@
  * -- simple var names --
  * foo, bar, one, two, six, ten, per, cep, tron
  *
- ** Primary methods/props:
+ ** Primary methods/props/classes:
+ * new DOMDocument($version, $encode)
+ * new DOMXPath()
  * ->save()
  * ->createElement()
  * ->appendChild()
- * ->formatOutput()
+ * ->formatOutput "get|set"
  * ->saveXML()
+ * ->nodeName "get|set"
+ * ->childNodes
  */
 
 
@@ -29,7 +33,18 @@ $dom->saveHTMLFile('data-formats/movies-xml.html');
 
 // start querying the XML
 $xpath = new DOMXPath($dom);
+// returns a "DOMNodeList" obj
 $elems = $xpath->query("//*[@id]");
+if(!is_null($elems)) {
+    // elem is a "DOMElement" obj
+    foreach($elems as $elem) {
+        echo "\n__> $elem->nodeName:\n";
+        $nodes = $elem->childNodes;
+        foreach($nodes as $node) {
+            echo "$node->nodeValue";
+        }
+    }
+}
 
 $langs = ['C', 'PHP', 'JS', 'SQL', 'C#'];
 $domLangs = new DOMDocument('1.0', 'UTF-8');
@@ -60,6 +75,5 @@ function addLangs(&$elem, $dom, $langs) {
     if(!empty($langs)) return addLangs($elem, $dom, $langs);
     return null;
 }
-
 
 
