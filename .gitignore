@@ -3,7 +3,7 @@ dist
 .tmp
 .sass-cache
 .idea
-*.xml
+
 **/**/**/**/**/*.csv
 images
 security-project/PHPMailer

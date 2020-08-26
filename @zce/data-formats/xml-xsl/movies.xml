@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Movies>
+  <movie>
+    <title>A History of</title>
+    <year>2005</year>
+    <country>USA</country>
+    <genre>crime</genre>
+    <director>
+      <first_name>Joe</first_name>
+      <last_name>Shmoe</last_name>
+      <birth_date>1970</birth_date>
+    </director>
+  </movie>
+</Movies>
