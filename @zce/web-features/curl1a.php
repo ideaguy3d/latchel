@@ -21,9 +21,9 @@ $curlResource = curl_init($resource);
 $curlData = ['foo' => 'bar'];
 
 curl_setopt($curlResource, CURLOPT_POST, true);
-
 curl_setopt($curlResource, CURLOPT_POSTFIELDS, $curlData);
 
+// should probably store in the output buffer
 $response = curl_exec($curlResource);
 
 $err = curl_error($curlResource);

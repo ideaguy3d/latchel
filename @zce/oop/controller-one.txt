@@ -1,0 +1,1 @@
+O:29:"oop\controllers\ControllerOne":3:{s:5:"model";O:19:"oop\models\ModelOne":1:{s:9:"modelType";s:14:"classification";}s:5:"stats";s:25:"PHP Statistical Computing";s:11:"doDeepClone";b:0;}

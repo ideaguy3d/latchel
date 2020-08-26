@@ -29,7 +29,9 @@
         "ext-dom": "*",
         "ext-xsl": "*",
         "ext-mbstring": "*",
-        "ext-xdebug": "*"
+        "ext-xdebug": "*",
+        "ext-curl": "*",
+        "ext-libxml": "*"
     },
 	"config": {
 		"process-timeout": 0

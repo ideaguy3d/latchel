@@ -12,10 +12,11 @@ include 'strings/StrArrayAccess.php';
 /* 1 - basics */
 //require "basics/bit-ops.php";
 //require "basics/basics2.php";
-//include "basics/q2.php";
+//include "basics/q1.php";
 //require 'basics/environment.php';
 //require 'basics/zval.php';
-require 'basics/mem-leak.php';
+//require 'basics/mem-leak.php';
+//require 'basics/NamespaceTwo.php';
 
 
 /* 2 - oop */
@@ -54,10 +55,16 @@ require 'basics/mem-leak.php';
 //require 'strings/search.php';
 //require 'strings/regex1.php';
 //require 'strings/q1.php';
-
+//require "strings/strcmp.php";
+//require "strings/sscanf.php";
+//require "strings/format.php";
 
 /* 7 - web features */
 //require 'web-features/session1.php';
+//require "web-features/output-buffer.php";
+//require "web-features/q1.php";
+//require 'web-features/curl2a.php';
+//require 'web-features/curl-put-req.php';
 
 
 /* 8 - error handling */
@@ -66,6 +73,7 @@ require 'basics/mem-leak.php';
 
 /* 9 - File io */
 //require 'file-io/file1.php';
+//require 'file-io/streams1.php';
 
 
 /* 10 - databases & SQL */
@@ -74,7 +82,8 @@ require 'basics/mem-leak.php';
 
 /* 11 - data formats */
 //include 'data-formats/datetime.php';
+//require "data-formats/dom1.php";
+//require "data-formats/xml-xsl.php";
+require "data-formats/dom2.php";
 
-
-
-
+// end of php file

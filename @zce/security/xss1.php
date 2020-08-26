@@ -68,7 +68,7 @@ data1 = <body onload=alert(4444)>
 
 <body>
 
-<h4>Best Sellers <span id="best-seller"></span></h4>
+<h4>Best Seller <span id="best-seller"></span> ! 😀</h4>
 
 <h1>Products for sale</h1>
 <ul>
@@ -82,7 +82,6 @@ data1 = <body onload=alert(4444)>
     <?php } ?>
 </ul>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
     let output = 'top product';

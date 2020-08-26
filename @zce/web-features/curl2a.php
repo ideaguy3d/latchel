@@ -13,7 +13,7 @@
  *
  */
 
-$resource = "169.254.241.146/+sweetsecure/curl1b.php";
+$resource = "169.254.241.146/+sweetsecure/curl1c.php";
 $c_data = ['model' => '^Perceptron++'];
 $c_data = ['foo' => '^Foo++'];
 
