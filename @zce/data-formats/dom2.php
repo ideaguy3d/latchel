@@ -35,16 +35,7 @@ $dom->saveHTMLFile('data-formats/movies-xml.html');
 $xpath = new DOMXPath($dom);
 // returns a "DOMNodeList" obj
 $elems = $xpath->query("//*[@id]");
-if(!is_null($elems)) {
-    // elem is a "DOMElement" obj
-    foreach($elems as $elem) {
-        echo "\n__> $elem->nodeName:\n";
-        $nodes = $elem->childNodes;
-        foreach($nodes as $node) {
-            echo "$node->nodeValue";
-        }
-    }
-}
+//echoXpathQuery($elems);
 
 $langs = ['C', 'PHP', 'JS', 'SQL', 'C#'];
 $domLangs = new DOMDocument('1.0', 'UTF-8');
@@ -52,28 +43,53 @@ $domLangs->formatOutput = true;
 $xml_to_create = '
 <?xml version="1.0"?>
 <top-languages>
-    <language>C</language>
-    <language>PHP</language>
-    <language>JS</language>
-    <language>SQL</language>
-    <language>C#</language>
+    <language rank="1">C</language>
+    <language rank="2">PHP</language>
+    <language rank="3">JS</language>
+    <language rank="4">SQL</language>
+    <language rank="5">C#</language>
 </top-languages>
 ';
 
+// create root elem, then add to DOM
 $rootLang = $domLangs->createElement('top-languages');
 $domLangs->appendChild($rootLang);
+
+// create title, then add to root
+$title = $domLangs->createElement('title');
+$rootLang->appendChild($title);
+
+// create a text node, then add the title
+$text = $domLangs->createTextNode('Top Programming Languages for 2021 and beyond.');
+$title->appendChild($text);
+
 addLangs($rootLang, $domLangs, $langs);
-$domLangs->save('data-formats/xml-xsl/top-langs.xml');
+$domLangs->save('data-formats/xml-xsl/top-langs-2021.xml');
 
 $debug = 1;
 
 //----------------------------------------------------------------------------------------------------
 
 function addLangs(&$elem, $dom, $langs) {
+    static $len = null;
+    $len = $len ?? count($langs);
     $lang = array_shift($langs);
-    $elem->appendChild($dom->createElement('language', $lang));
+    $langElem = $dom->createElement('language', $lang);
+    $langElem->setAttribute('rank', $len - count($langs));
+    $elem->appendChild($langElem);
     if(!empty($langs)) return addLangs($elem, $dom, $langs);
     return null;
 }
 
-
+function echoXpathQuery ($elems) {
+    if(!is_null($elems)) {
+        // elem is a "DOMElement" obj
+        foreach($elems as $elem) {
+            echo "\n__> $elem->nodeName:\n";
+            $nodes = $elem->childNodes;
+            foreach($nodes as $node) {
+                echo "$node->nodeValue";
+            }
+        }
+    }
+}
