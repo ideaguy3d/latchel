@@ -19,7 +19,17 @@
 
 $dom = new DOMDocument('1.0', 'UTF-8');
 $dom->load('data-formats/xml-xsl/movies.xml');
-//$dom->save(); // won't work
+
+// convert to an in-memory XML string
+$domXmlStr = $dom->saveXML();
+// convert to an in-memory HTML string
+$domHtmlStr = $dom->saveHTML();
+// save as HTML to a file
+$dom->saveHTMLFile('data-formats/movies-xml.html');
+
+// start querying the XML
+$xpath = new DOMXPath($dom);
+$elems = $xpath->query("//*[@id]");
 
 $langs = ['C', 'PHP', 'JS', 'SQL', 'C#'];
 $domLangs = new DOMDocument('1.0', 'UTF-8');
@@ -44,7 +54,7 @@ $debug = 1;
 
 //----------------------------------------------------------------------------------------------------
 
-function addLangs (&$elem, $dom, $langs) {
+function addLangs(&$elem, $dom, $langs) {
     $lang = array_shift($langs);
     $elem->appendChild($dom->createElement('language', $lang));
     if(!empty($langs)) return addLangs($elem, $dom, $langs);
