@@ -13,7 +13,7 @@ echo "\n\n> stream wrappers:\n\n";
 class StreamDB
 {
     const TABLE = 'DataStream';
-    protected $statement, $position, $data, $url, $id, $exists;
+    protected $stream, $position, $data, $url, $id, $exists;
     
     public function stream_open($url, $mode) {
         $this->position = 0;
@@ -37,14 +37,20 @@ class StreamDB
                 $check->execute();
                 if($check->fetch()) {
                     $this->exists = true;
-                    $this->statement = $pdo->prepare("update $table set data=?, date=? where id=$id");
+                    $this->stream = $pdo->prepare(
+                        "update $table set data=?, date=? where id=$id"
+                    );
                 }
                 else {
-                    $this->statement = $pdo->prepare("insert into $table values ($id, ?, now())");
+                    $this->stream = $pdo->prepare(
+                        "insert into $table values ($id, ?, now())"
+                    );
                 }
                 return true;
             case 'r':
-                $this->statement = $pdo->prepare("select * from $table where id = $id");
+                $this->stream = $pdo->prepare(
+                    "select * from $table where id = $id"
+                );
                 return true;
         }
         return false;
@@ -60,19 +66,21 @@ class StreamDB
             $binding [] = $dt->format('Y-m-d H:m:s');
         }
         
-        return $this->statement->execute($binding) ? $str_len : null;
+        return $this->stream->execute($binding) ? $str_len : null;
     }
     
     public function stream_read() {
-    
+        $this->stream->execute($this->id);
+        if(0 === $this->stream->rowCount()) return false;
+        return implode(', ', $this->stream->fetch());
     }
     
-    public function stream_tell() {
-    
+    public function stream_id() {
+        return $this->id;
     }
     
     public function stream_eof() {
-    
+        return (bool)$this->stream->rowCount();
     }
 }
 
