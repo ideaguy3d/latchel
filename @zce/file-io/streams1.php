@@ -50,8 +50,17 @@ class StreamDB
         return false;
     }
     
-    public function stream_write() {
-    
+    public function stream_write($data) {
+        $str_len = strlen($data);
+        $this->position += $str_len;
+        $binding = [$data];
+        
+        if($this->exists) {
+            $dt = new DateTime('now');
+            $binding [] = $dt->format('Y-m-d H:m:s');
+        }
+        
+        return $this->statement->execute($binding) ? $str_len : null;
     }
     
     public function stream_read() {
