@@ -6,17 +6,17 @@
  * Time: 4:39 PM
  */
 
-
+date_default_timezone_set('America\Los_Angeles');
 echo "\n\n> stream wrappers:\n\n";
-
 
 class StreamDB
 {
-    const TABLE = 'DataStream';
-    protected $stream, $position, $data, $url, $id, $exists;
+    const TABLE = 'perceptron_stream';
+    protected $stream, $position, $data, $url, $origUrl, $id, $exists;
     
     public function stream_open($url, $mode) {
         $this->position = 0;
+        $this->origUrl = $url;
         $url = parse_url($url);
         $path = explode('/', $url['path']);
         $this->id = (int)$path[2];
@@ -24,8 +24,13 @@ class StreamDB
         $id = $this->id;
         
         try {
-            $dsn = "mysql:host={$url['host']};dbname={$path[1]}";
-            $pdo = new PDO($dsn, $url['user'], $url['pass'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+            $host = $url['host'];
+            $db = $path[1];
+            $dsn = "mysql:host=$host;dbname=$db";
+            
+            $username = $url['user'];
+            $password = $url['pass'];
+            $pdo = new PDO($dsn, 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         }
         catch(Exception $e) {
             exit($e->getMessage());
@@ -75,7 +80,7 @@ class StreamDB
         return implode(', ', $this->stream->fetch());
     }
     
-    public function stream_id() {
+    public function stream_tell() {
         return $this->id;
     }
     
@@ -83,6 +88,19 @@ class StreamDB
         return (bool)$this->stream->rowCount();
     }
 }
+
+stream_wrapper_register('Perceptron', StreamDB::class);
+
+// scheme://user:pass@host/dbname/value1[/value2...]
+$wrapper = 'Perceptron://php_ninja:Php7num1!@127.0.0.1/hack_match/1';
+
+$resource = fopen('', 'w');
+if($bytesAdded = fwrite($resource, 'ai archetype')) echo "-> Streamed $bytesAdded bytes to resource.";
+else echo '__>> Data Stream Script only works on localhost at the moment.';
+
+
+
+
 
 
 // end of php file
