@@ -4,9 +4,14 @@
  * User: Julius Alvarado
  * Date: 8/20/2020
  * Time: 4:39 PM
+ *
+ *
+ * Notable functions used:
+ * - stream_wrapper_register()
+ *
  */
 
-date_default_timezone_set('America\Los_Angeles');
+date_default_timezone_set('America/Los_Angeles');
 echo "\n\n> stream wrappers:\n\n";
 
 class StreamDB
@@ -14,6 +19,14 @@ class StreamDB
     const TABLE = 'perceptron_stream';
     protected $stream, $position, $data, $url, $origUrl, $id, $exists;
     
+    /**
+     * gets called with: fopen()
+     *
+     * @param $url
+     * @param $mode
+     *
+     * @return bool
+     */
     public function stream_open($url, $mode) {
         $this->position = 0;
         $this->origUrl = $url;
@@ -61,6 +74,13 @@ class StreamDB
         return false;
     }
     
+    /**
+     * gets called with: fwrite()
+     *
+     * @param $data
+     *
+     * @return int|null
+     */
     public function stream_write($data) {
         $str_len = strlen($data);
         $this->position += $str_len;
@@ -75,7 +95,7 @@ class StreamDB
     }
     
     public function stream_read() {
-        $this->stream->execute($this->id);
+        $this->stream->execute([$this->id]);
         if(0 === $this->stream->rowCount()) return false;
         return implode(', ', $this->stream->fetch());
     }
@@ -89,18 +109,35 @@ class StreamDB
     }
 }
 
-stream_wrapper_register('Perceptron', StreamDB::class);
+(function(){
+    
+    stream_wrapper_register('Perceptron', StreamDB::class);
+    
+    // scheme://user:pass@host/dbname/value1[/value2...]
+    $wrapper = 'Perceptron://php_ninja:Php7num1!@127.0.0.1/hack_match/1';
+    
+    // write to the db stream
+    $writeStream = fopen($wrapper, 'w') or null;
+    if($writeStream) {
+        if($bytesAdded = fwrite($writeStream, 'ai archetype')) echo "-> Streamed $bytesAdded bytes to resource.";
+        else echo '__>> Data Stream Script only works on localhost at the moment.';
+        fclose($writeStream);
+    }
+    
+    
+    echo "\r\n \r\n";
+    
+    // read from the db stream
+    $readStream = fopen($wrapper, 'r') or null;
+    if($readStream) {
+        $dbRecord = var_export(fread($readStream, 100), true);
+        echo "Database record from db stream = $dbRecord";
+        fclose($readStream);
+    }
+    
+    
+    echo "\r\n \r\n";
+})();
 
-// scheme://user:pass@host/dbname/value1[/value2...]
-$wrapper = 'Perceptron://php_ninja:Php7num1!@127.0.0.1/hack_match/1';
-
-$resource = fopen('', 'w');
-if($bytesAdded = fwrite($resource, 'ai archetype')) echo "-> Streamed $bytesAdded bytes to resource.";
-else echo '__>> Data Stream Script only works on localhost at the moment.';
 
 
-
-
-
-
-// end of php file
