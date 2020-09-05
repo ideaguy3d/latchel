@@ -10,7 +10,7 @@ chdir('oop/data');
 
 $dim = new DimensionDelegator();
 foreach($dim->getDimensions() as $item) {
-    
+    echo "\n$item\n";
 }
 
 
