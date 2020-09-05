@@ -60,7 +60,7 @@ function yieldByReferencePractice() {
         yield $x;
     }
 
-    $y = pracByRef(24.99);
+    $y = &pracByRef(24.99);
     $y++;
 
     return $y;
