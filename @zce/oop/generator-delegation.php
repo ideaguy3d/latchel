@@ -8,15 +8,20 @@
  
 chdir('oop/data');
 
-
-$dataStream = streamData();
-
-foreach($dataStream as $data) {
-    $dataExport = var_export($data, true);
-    echo "\n_> $dataExport\n";
+$dim = new DimensionDelegator();
+foreach($dim->getDimensions() as $item) {
+    
 }
 
 
+//-----------------------------------------------------------------------
+function echoStream () {
+    $dataStream = streamData();
+    foreach($dataStream as $data) {
+        $dataExport = var_export($data, true);
+        echo "\n_> $dataExport\n";
+    }
+}
 
 function streamData () {
     $stream = fopen('acc-sales.csv', 'r+');
@@ -24,3 +29,22 @@ function streamData () {
     fclose($stream);
 }
 
+class DimensionDelegator
+{
+    protected array $widths = [5,10,20];
+    protected array $lengths = [15, 20, 35];
+    
+    protected function getWidths() {
+        foreach($this->widths as $width) yield $width;
+    }
+    
+    protected function getLengths() {
+        foreach($this->lengths as $length) yield $length;
+    }
+    
+    public function getDimensions() {
+        yield from $this->getLengths();
+        // how do I know I've gone from yielding from length to width
+        yield from $this->getWidths();
+    }
+}
