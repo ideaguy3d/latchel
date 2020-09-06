@@ -15,6 +15,17 @@ dataPipelineEngineer(...$engineer);
 dataAnalystEngineer(...$engineer);
 dataAutomationEngineer(...$engineer);
 
+/*
+    OUTPUT:
+ - Julius Alvarado will use PHP for dataAnalystEngineer tasks for company
+
+ - Julius Alvarado will use PHP for dataPipelineEngineer tasks for company
+
+ - Julius Alvarado will use PHP for dataAnalystEngineer tasks for company
+
+ - Julius Alvarado will use PHP for dataAutomationEngineer tasks for company
+*/
+
 // a few ways to make a function dynamic
 
 function engEcho($first, $last, $tool, $task) {
