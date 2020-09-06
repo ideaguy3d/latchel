@@ -8,10 +8,17 @@
  * @param array $engineer
  */
 
+$engineer = ['Julius', 'Alvarado', 'PHP'];
+
+dataAnalystEngineer(...$engineer);
+dataPipelineEngineer(...$engineer);
+dataAnalystEngineer(...$engineer);
+dataAutomationEngineer(...$engineer);
+
 // a few ways to make a function dynamic
 
 function engEcho($first, $last, $tool, $task) {
-    $f = "\n - %s %s will use %s for %s tasks for company\n";
+    $f = "\n - %s %s will use %s for %s tasks at the company\n";
     printf($f, $first, $last, $tool, $task);
 }
 
