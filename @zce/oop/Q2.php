@@ -20,31 +20,32 @@
  *
  */
 
+//interfaceParamMismatch();
+accessMod();
 
 // question 2, a fatal error occurs due to Baz->setBar()
-if(($practiceQuestion = true)) {
-    
-    interface SomeInter
+function interfaceParamMismatch() {
+    interface OneInter
     {
         public function getFoo();
         
         public function setFoo($foo);
     }
     
-    interface OtherInter
+    interface TwoInter
     {
         public function getFoo();
         
         public function setBar($bar);
     }
     
-    class Baz implements SomeInter, OtherInter
+    class Baz implements OneInter, TwoInter
     {
-        private $foo;
+        protected $foo = 'foo';
         private $bar;
         
         public function getFoo() {
-            return 'foo';
+            return $this->foo;
         }
         
         public function setFoo($foo) {
@@ -59,12 +60,59 @@ if(($practiceQuestion = true)) {
     $someClass = new Baz();
     
     echo "\n\n" . $someClass->getFoo();
-    //$someClass->setFoo('hi');
+    $someClass->setFoo('hi');
     //$someClass->setBar('sup');
 }
 
+function accessMod() {
+    interface Math
+    {
+        function stats(int $x, int $y);
+    }
+    
+    interface StatsPHP
+    {
+        function stats(array $z);
+    }
+    
+    abstract class Student
+    {
+        abstract protected function getClasses();
+        
+        protected function studentClasses() {
+            return ['Calculus in PHP', 'Linear Algebra in PHP'];
+        }
+    }
+    
+    class PhpStudent extends Student //implements StatsPHP, Math
+    {
+        private $z;
+        protected function getClasses() {
+            return $this->studentClasses();
+        }
+        
+        function stats (array $z) {
+            $this->z = $z;
+            return 'stats';
+        }
+        
+        static function mode() {
+            $mid = self::midpoint();
+        }
+        
+        function midpoint() {
+            return count($this->z)/2;
+        }
+        
+    }
+    
+    $ps = new PhpStudent();
+    $classes = $ps->getClasses();
+    $debug = 1;
+}
+
 // question 3, fatal error due to protected access
-if(($practiceQuestion = false)) {
+function accessModifier() {
     abstract class BaseClass
     {
         abstract protected function someProtected();
@@ -86,7 +134,7 @@ if(($practiceQuestion = false)) {
 }
 
 // question 5, understanding static functions better
-if(($practiceQuestion = true)) {
+function statics_and_interfaceOverload() {
     // can static functions be abstract?
     abstract class MyStatic
     {
@@ -122,8 +170,8 @@ if(($practiceQuestion = true)) {
     echo $myOtherStatic->worldProcess();
 }
 
-// question 10, magic methods
-if(($practiceQuestion = false)) {
+
+function magicMethods() {
     class Magic
     {
         public $a = "A";
