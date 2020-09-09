@@ -67,15 +67,16 @@ function interfaceParamMismatch() {
 function accessMod() {
     interface Math
     {
-        function stats(int $x, int $y);
+        function statisticalComputing(int $x, int $y);
     }
     
     interface StatsPHP
     {
+        //
         function stats(array $z);
     }
     
-    abstract class Student
+    abstract class Student implements Math, StatsPHP
     {
         abstract protected function getClasses();
         
@@ -87,26 +88,36 @@ function accessMod() {
     class PhpStudent extends Student //implements StatsPHP, Math
     {
         private $z;
+        
         protected function getClasses() {
             return $this->studentClasses();
         }
         
-        function stats (array $z) {
+        function stats(array $z) {
             $this->z = $z;
             return 'stats';
         }
         
-        static function mode() {
-            $mid = self::midpoint();
+        public static function mode(int $point) {
+            $mid = self::midpoint($point);
+            $mid2 = static::midpoint($point);
+            $debug = 1;
         }
         
-        function midpoint() {
-            return count($this->z)/2;
+        public function midpoint($point = null) {
+            if($point) return $point / 2;
+            return count($this->z) / 2;
         }
         
+        public function statisticalComputing(int $x, int $y) {
+            $f = 'PHP will compute the statistics for %2$s and %1$s';
+            $f .= ' and find the standard deviation for %2$s';
+            return sprintf($f, $x, $y);
+        }
     }
     
     $ps = new PhpStudent();
+    PhpStudent::mode(10);
     $classes = $ps->getClasses();
     $debug = 1;
 }

@@ -1,0 +1,8 @@
+<fruits>
+    <?fruit type="string"?>
+    <fruit>Blue Berries</fruit>
+    <fruit>Strawberries</fruit>
+    <fruit>Raspberries</fruit>
+    <fruit>42</fruit>
+    <fruit>Acai Berries</fruit>
+</fruits>

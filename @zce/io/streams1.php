@@ -6,7 +6,7 @@
  * Time: 4:39 PM
  *
  *
- * Notable functions used:
+ * Notable functions/classes used:
  * - stream_wrapper_register()
  *
  */
@@ -123,7 +123,6 @@ class StreamDB
         else echo '__>> Data Stream Script only works on localhost at the moment.';
         fclose($writeStream);
     }
-    
     
     echo "\r\n \r\n";
     

@@ -64,19 +64,24 @@ $text = $domLangs->createTextNode('Top Programming Languages for 2021 and beyond
 $title->appendChild($text);
 
 addLangs($rootLang, $domLangs, $langs);
-$domLangs->save('data-formats/xml-xsl/top-langs-2021.xml');
+//$domLangs->save('data-formats/xml-xsl/top-langs-2021.xml');
 
 $debug = 1;
 
 //----------------------------------------------------------------------------------------------------
 
 function addLangs(&$elem, $dom, $langs) {
+    // INIT starting length of $langs array
     static $len = null;
     $len = $len ?? count($langs);
+    
+    // add lang to XML
     $lang = array_shift($langs);
     $langElem = $dom->createElement('language', $lang);
     $langElem->setAttribute('rank', $len - count($langs));
     $elem->appendChild($langElem);
+    
+    // recursion
     if(!empty($langs)) return addLangs($elem, $dom, $langs);
     return null;
 }

@@ -16,6 +16,11 @@
 
 header('Content-Type: application/xml');
 
+$dom_var = new DOMDocument('1.0', 'UTF-8');
+$dom_var->load('data-formats/xml-xsl/b-fruits-var.xml');
+$dom_var_string = $dom_var->saveXML();
+$debug = 1;
+
 $cdList = [
     ['title' => 'Trance', 'artist' => 'DJ Gogo', 'year' => 2015],
     ['title' => 'Techno', 'artist' => 'TiestoX', 'year' => 2019],
