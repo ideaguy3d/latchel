@@ -35,32 +35,67 @@ function calc(closure $closure, int $value) {
 
 echo "\n_> calc = " . calc($exp, 8);
 
-class AnimalTwo
+class GammaAnimal
 {
-    public string $nature;
+    protected string $nature;
+    protected string $ageRange;
     
-    function getClosure() {
+    public function animalNature(): Closure {
         $boundVariable = 'Animal';
         return function() use ($boundVariable) {
-            return $this->nature . " $boundVariable";
+            return "\n__> This $boundVariable has a $this->nature nature.\n";
+        };
+    }
+    
+    /**
+     * @param $out_of - this value must be something generic, that would make
+     *      sense to set as a base value for all classes that inherit it
+     *      because "->bindTo()" will be getting used
+     *
+     * @return Closure
+     */
+    public function animalCuteness($out_of): Closure {
+        $cuteness = 0.01; // base score
+        $scoring_system = [
+            $out_of, "\n_>> %s is a %.2f out of $out_of\n",
+            fn($c = null) => $c ?? $cuteness / $out_of * 10
+        ];
+        
+        // this closure will be relative to each child class
+        return function($animal) use ($scoring_system, $cuteness) {
+            if(0 === strcmp('dog', $animal)) $cuteness = 10;
+            else if(0 === strcmp('cat', $animal)) $cuteness = 11;
+            $score = $scoring_system[2]($cuteness);
+            return sprintf($scoring_system[1], $this->ageRange, $score);
         };
     }
 }
 
-class CatTwo extends AnimalTwo
+class GammaDog extends GammaAnimal
 {
-    public string $nature = 'Cute';
+    protected string $nature = 'Playful';
+    
+    public function __construct($ageRange) { $this->ageRange = $ageRange; }
 }
 
-class DogTwo extends AnimalTwo
+class GammaCat extends GammaAnimal
 {
-    public string $nature = 'Fun';
+    protected string $nature = 'Cuddly';
+    
+    public function __construct($ageRange) { $this->ageRange = $ageRange; }
 }
 
-$anim = new CatTwo;
-$anim_nature = $anim->getClosure();
-echo "\n__>" . $anim_nature();
-$anim_nature = $anim_nature->bindTo(new DogTwo);
-echo "\n__>" . $anim_nature();
+$cat = new GammaCat('kitten');
+$dog = new GammaDog('puppy');
+
+$petNature = $cat->animalNature();
+echo $petNature();
+$petNature = $petNature->bindTo($dog);
+echo $petNature();
+
+$animalCuteness = $cat->animalCuteness(10);
+echo $animalCuteness('cat');
+$animalCuteness = $animalCuteness->bindTo($dog);
+echo $animalCuteness('dog');
 
 $debug = 1;
