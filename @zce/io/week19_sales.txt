@@ -1,4 +1,15 @@
-r
+adding Denver metropolitan area
+
+region: Sacramento Metropolitanr
+.r
+.all_sales_reps: $9,217.29
+region: Sacramento Metropolitanr
+.r
+.all_sales_reps: $9,217.29
+region: Sacramento Metropolitanr
+.r
+.all_sales_reps: $9,217.29
+region: Sacramento Metropolitanr
 .r
 .all_sales_reps: $9,217.29
 region: Sacramento Metropolitanr
