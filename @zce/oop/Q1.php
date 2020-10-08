@@ -8,6 +8,14 @@
 
 namespace Ceptro
 {
+    trait TestOne
+    {
+        public string $test = '1st test';
+    
+        public function getTest() {
+            return $this->test;
+        }
+    }
     class Magic
     {
         public $a = 'A';

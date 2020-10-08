@@ -9,11 +9,13 @@
  */
 
 $engineer = ['Julius', 'Alvarado', 'PHP'];
-$_POST['v'] = (int) 4.0;
+$_POST['v'] = (int)4.0;
 
-if(!print weird(9)) {
+
+// won't work, we can't use ! on a language construct / reserved keyword
+/*if(!print weird(9)) {
     echo 'Alrighty!';
-}
+}*/
 
 // Compiler / Parse Error
 /*$lambda = function mode() {
@@ -22,11 +24,11 @@ if(!print weird(9)) {
 
 //echo $w;
 
-lots_err($_POST['v']);
-add_values(1, 2, 3);
+//lots_err($_POST['v']);
+//add_values(1, 2, 3);
 dataAnalystEngineer(...$engineer);
 dataPipelineEngineer(...$engineer);
-dataAnalystEngineer(...$engineer);
+bigDataEngineer(...$engineer);
 dataAutomationEngineer(...$engineer);
 
 /*
@@ -40,13 +42,11 @@ dataAutomationEngineer(...$engineer);
  - Julius Alvarado will use PHP for dataAutomationEngineer tasks for company
 */
 
-// a few ways to make a function dynamic
-
-function weird ($x, &$y=1, $z=null) {
+function weird($x, &$y = 1, $z = null) {
     return $y += $x ?? $y ?? $z;
 }
 
-function add_values(){
+function add_values() {
     $sum = 0;
     for($i = 1; $i <= func_num_args(); $i++) {
         $sum += func_get_arg($i);
@@ -54,11 +54,11 @@ function add_values(){
     return $sum;
 }
 
-function lots_err (float $x): void {
+function lots_err(float $x): void {
     $x = 4.0;
     $x++;
     $x2 = $x ** 2;
-    echo $x++**2;
+    echo $x++ ** 2;
     //return $x;
 }
 
@@ -66,6 +66,9 @@ function engEcho($first, $last, $tool, $task) {
     $f = "\n - %s %s will use %s for %s tasks at the company\n";
     printf($f, $first, $last, $tool, $task);
 }
+
+
+/* a few ways to make a function dynamic */
 
 // scatter operator
 function dataPipelineEngineer(...$engineer) {
@@ -92,7 +95,6 @@ function dataAnalystEngineer() {
     $first = func_get_arg(0);
     $last = func_get_arg(1);
     $tool = func_get_arg(2);
-    
     $m = __FUNCTION__;
     engEcho($first, $last, $tool, $m);
 }
@@ -106,7 +108,6 @@ function bigDataEngineer() {
         else if(1 === $i) $last = func_get_arg($i);
         else $tool = func_get_arg($i);
     }
-    
     $m = __FUNCTION__;
     engEcho($first, $last, $tool, $m);
 }
@@ -115,7 +116,6 @@ function bigDataEngineer() {
 function dataAutomationEngineer() {
     $engineer = func_get_args();
     [$first, $last, $tool] = $engineer;
-    
     $m = __FUNCTION__;
     engEcho($first, $last, $tool, $m);
 }

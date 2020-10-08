@@ -12,9 +12,7 @@ $commission = function($x) {
 };
 
 function salesCom(closure $lambda, $sale) {
-    if($sale > 10000) {
-        return $lambda(0.125);
-    }
+    if($sale > 10000)  return $lambda(0.125);
     return $lambda(0.25);
 }
 

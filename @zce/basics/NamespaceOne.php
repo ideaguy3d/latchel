@@ -8,6 +8,6 @@
 
 namespace myapp\utils\hello;
 
-function world () {
+function world() {
     return 'hello world';
 }
