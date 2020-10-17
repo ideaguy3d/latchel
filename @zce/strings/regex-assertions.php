@@ -7,6 +7,21 @@
     perceptron, metric, nueronet, cascade, cluster, matrix, feature, omicron, sigma, iota, epsilon, gamma, omega,
     -- combinations --
     metricSet, cascadeVec, iotaStat, epsilonFoo, featureX, nueronetA, etc.
+
+
+(?=  ) // pos look ahead
+(?!  ) // neg look ahead
+(?<=  ) // pos look behind
+(?<!  ) // neg look behind
+
+(?>  ) // once-only subpattern
+
+(?(  )  |  )  // conditional
+
+(?#  )  // comment
+
+((?R)  )  // recursive
+
 */
 /**
  * Created by PhpStorm.
@@ -32,7 +47,7 @@ $s2 = 'It is worth noting that PHP can do anything R can do';
 $s3 = 'perstatron';
 $s4 = 'tronstatper';
 
-// look ahead (?=per) and (?!cep)
+// look ahead (?=  ) and (?!  )
 $patterns = ['/stat(?=per)/', '/stat(?!cep)/'];
 foreach($patterns as $pattern) {
     preg_match($pattern, $s4, $m4);
@@ -40,7 +55,7 @@ foreach($patterns as $pattern) {
     $debug = 1;
 }
 
-// look behind (?<=per) and (?<!cep)
+// look behind (?<=  ) and (?<!  )
 $patterns = ['/(?<=per)stat/', '/(?<!tron)stat/'];
 foreach($patterns as $pattern) {
     preg_match($pattern, $s3, $m3);
